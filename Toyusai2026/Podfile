@@ -1,0 +1,24 @@
+# Xcode 27 writes objectVersion 110. xcodeproj 1.27.0 only maps up to 77,
+# so Pods project generation raises ArgumentError. Register 110 until the gem does.
+require 'xcodeproj'
+
+unless Xcodeproj::Constants::COMPATIBILITY_VERSION_BY_OBJECT_VERSION.key?(110)
+  updated = Xcodeproj::Constants::COMPATIBILITY_VERSION_BY_OBJECT_VERSION.merge(110 => 'Xcode 27.0')
+  Xcodeproj::Constants.send(:remove_const, :COMPATIBILITY_VERSION_BY_OBJECT_VERSION)
+  Xcodeproj::Constants.const_set(:COMPATIBILITY_VERSION_BY_OBJECT_VERSION, updated.freeze)
+end
+
+if Xcodeproj::Constants::LAST_KNOWN_OBJECT_VERSION < 110
+  Xcodeproj::Constants.send(:remove_const, :LAST_KNOWN_OBJECT_VERSION)
+  Xcodeproj::Constants.const_set(:LAST_KNOWN_OBJECT_VERSION, 110)
+end
+
+platform :ios, '16.4'
+use_frameworks!
+
+target 'Toyusai2026' do
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'Alamofire'
+    pod 'SwiftyJSON'
+end

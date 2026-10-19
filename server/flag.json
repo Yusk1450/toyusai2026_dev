@@ -1,0 +1,42 @@
+[
+    {
+        "comment": "消えたゼミ生（クリア）",
+        "name": "disappear_seminar",
+        "clear": false
+    },
+    {
+        "comment": "動く集合写真（クリア）",
+        "name": "moving_picture",
+        "clear": false
+    },
+    {
+        "comment": "過去のゼミ室（クリア）",
+        "name": "past_seminar_room",
+        "clear": false
+    },
+    {
+        "comment": "消された論文（クリア）",
+        "name": "erase_paper",
+        "clear": false
+    },
+    {
+        "comment": "ログイン",
+        "name": "login",
+        "clear": false
+    },
+    {
+        "comment": "ノーマルエンド",
+        "name": "normal_end",
+        "clear": false
+    },
+    {
+        "comment": "バッドエンド",
+        "name": "bad_end",
+        "clear": false
+    },
+    {
+        "comment": "トゥルーエンド",
+        "name": "true_end",
+        "clear": false
+    }
+]
