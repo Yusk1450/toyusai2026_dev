@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (5.12.2)
+  - InputBarAccessoryView (5.5.0):
+    - InputBarAccessoryView/Core (= 5.5.0)
+  - InputBarAccessoryView/Core (5.5.0)
+  - MessageKit (3.8.0):
+    - InputBarAccessoryView (~> 5.5.0)
   - RxCocoa (6.9.0):
     - RxRelay (= 6.9.0)
     - RxSwift (= 6.9.0)
@@ -10,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - MessageKit
   - RxCocoa
   - RxSwift
   - SwiftyJSON
@@ -17,6 +23,8 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - InputBarAccessoryView
+    - MessageKit
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -24,11 +32,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c5f37d8f438dc1d7fd3ff767f2f80fd01ca381d7
+  InputBarAccessoryView: 1d7b0a672b36e370f01f264b3907ef39d03328e3
+  MessageKit: a1ba0c69ebead94029867853eb44dd05b9b3f453
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
   RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
 
-PODFILE CHECKSUM: 36a9c1534bb8868b58c66da58532c48593e03082
+PODFILE CHECKSUM: 11f1a23370369e8a4b919ec5c59bf77a0751cd72
 
 COCOAPODS: 1.16.2

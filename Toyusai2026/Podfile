@@ -21,4 +21,5 @@ target 'Toyusai2026' do
     pod 'RxCocoa'
     pod 'Alamofire'
     pod 'SwiftyJSON'
+    pod 'MessageKit'
 end
