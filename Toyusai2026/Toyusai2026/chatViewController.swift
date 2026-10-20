@@ -89,6 +89,14 @@ class chatViewController: MessagesViewController
 
 }
 
+func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "toPopup"
+    {
+        if let popUpVC = segue.destination as? popUpViewController {
+        }
+    }
+}
+
 // MARK: - MessagesDataSource
 extension chatViewController: MessagesDataSource
 {
