@@ -11,39 +11,26 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 
-const char* ssid = "L305";
+const char* ssid = "Buffalo-G-F030";
 const char* pwd = "4dp_1450";
-const IPAddress ip(192,168,2,2); // M5のIPアドレス
-const IPAddress gateway(192,168,2,1);// ルーター
+const IPAddress ip(192,168,13.201);
+const IPAddress gateway(192,168,13,1);
 const IPAddress subnet(255,255,255,0);
 
 //↓はピリオド！！
-const char* host = "192.168.2.184"; //macのIPアドレス
+const char* host = "192.168.13.202";
 const int recv_port = 5555;
 
-// unsigned long go;
-
-// void onOscReceived(const OscMessage& m){
-//   int val = m.arg<int>(0);
-
-//   Serial.println("bbb");
-
-//   Serial.println(val);
-// }
-
-
-void setup() {
-  // put your setup code here, to run once:
+void setup()
+{
   Serial.begin(115200);
   
   // RFID関係
-  while (!Serial);        // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
+  while (!Serial);
   SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN);
-  mfrc522.PCD_Init();        // Init MFRC522
-  delay(4);                // Optional delay. Some board do need more time after init to be ready, see Readme
-  Serial.println("Hello!!");
-  mfrc522.PCD_DumpVersionToSerial();    // Show details of PCD - MFRC522 Card Reader details
-  Serial.println(F("Scan PICC to see UID, SAK, type, and data blocks..."));
+  mfrc522.PCD_Init();
+  delay(4);
+  mfrc522.PCD_DumpVersionToSerial();
 
   delay(2000);
 
@@ -61,39 +48,22 @@ void setup() {
     }
     Serial.print("WiFi connected,IP = ");
     Serial.println(WiFi.localIP());
-
-
-    // OscWiFi.subscribe(recv_port,"/callback",onOscReceived);
-    OscWiFi.send(host,recv_port,"/reply",100,200,300);
-    Serial.println("aaa");
-
-    // go = millis();
-
-
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  OscWiFi.update();
-    // OscWiFi.send(host,recv_port,"/reply",100,200,300);
-  // Reset the loop if no new card present on the sensor/reader. This saves the entire process when idle.
+void loop()
+{
+    OscWiFi.update();
     if ( ! mfrc522.PICC_IsNewCardPresent()) {
         return; //
     }
 
-    // Select one of the cards
     if ( ! mfrc522.PICC_ReadCardSerial()) {
         return;
     }
-
-  // if((millis() - go) > 1000){
-  // }
-
  
-    // Dump debug info about the card; PICC_HaltA() is automatically called
-    mfrc522.PICC_DumpToSerial(&(mfrc522.uid)); //シリアル通信で全ての情報を送信
+    mfrc522.PICC_DumpToSerial(&(mfrc522.uid));
 
-    //UIDを文字列に変換
+  // UIDを文字列に変換
   String strBuf[mfrc522.uid.size];
   for (byte i = 0; i < mfrc522.uid.size; i++) {
     strBuf[i] =  String(mfrc522.uid.uidByte[i], HEX);
