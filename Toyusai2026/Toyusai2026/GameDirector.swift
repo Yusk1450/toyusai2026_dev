@@ -12,11 +12,7 @@ import SwiftyJSON
 
 enum OSCAddress: String
 {
-	case MathDeviceRoomA = "/math/to/app/rooma"
-	case MathDeviceRoomB = "/math/to/app/roomb"
-	case MathMovieStart = "/math/movie/start"
-	case InformaticsDeviceSend = "/rfid_confirm"
-	case InformaticsDeviceReceive = "/uuid"
+	case NFCDevice = "/reply"
 }
 
 protocol GameDirectorDelegate: AnyObject
@@ -199,6 +195,19 @@ extension GameDirector: OSCUdpServerDelegate
 		if let message = packet as? OSCMessage
 		{
 			print(message.addressPattern.fullPath)
+			
+			if (message.addressPattern.fullPath == OSCAddress.NFCDevice.rawValue)
+			{
+				if let scene = self.currentScene as? StudentCardScene
+				{
+					print(message.arguments)
+
+					if let cardUUID = message.arguments[0] as? String
+					{
+						
+					}
+				}
+			}
 		}
 	}
 	

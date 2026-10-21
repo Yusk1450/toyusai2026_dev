@@ -7,8 +7,58 @@
 
 import UIKit
 
-class FirstScene: BaseScene
+class StudentCardScene: BaseScene
 {
+	func showStudentCard(uuid:String)
+	{
+		let director = GameDirector.shared
+
+		if let currentViewController = director.currentViewController as? ChatViewController
+		{
+			// 二島
+			if (uuid == "D2 D5 F7 06")
+			{
+				
+			}
+			// 平﨑
+			else if (uuid == "82 ED D0 06")
+			{
+				
+			}
+			// 山井
+			else if (uuid == "43 54 D1 06")
+			{
+				
+			}
+			// 橋口
+			else if (uuid == "5B F0 79 3B")
+			{
+				
+			}
+			// 掛川
+			else if (uuid == "26 12 3A 03")
+			{
+				
+			}
+			// 鈴村
+			else if (uuid == "3B 06 D4 06")
+			{
+				
+			}
+			// 野々村
+			else if (uuid == "2D 88 D5 06")
+			{
+				
+			}
+			// 杉原
+			else if (uuid == "AC 13 F5 06")
+			{
+				
+			}
+		}
+		
+	}
+	
 	override func start(viewController:UIViewController?)
 	{
 		self.scenario = [

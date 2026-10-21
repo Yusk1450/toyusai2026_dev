@@ -44,21 +44,6 @@ class BaseScene: NSObject
 										  repeats: false)
 	}
 	
-	func createSender(name:String) -> SenderType?
-	{
-		var sender:SenderType? = nil
-		if (name == "伊志郷")
-		{
-			sender = Sender(senderId: "2", displayName: name)
-		}
-		else if (name == "山井")
-		{
-			sender = Sender(senderId: "3", displayName: name)
-		}
-
-		return sender
-	}
-	
 	// シナリオ用のタイマー
 	@objc func nextMessage(timer:Timer)
 	{
@@ -79,7 +64,7 @@ class BaseScene: NSObject
 
 				if let viewController = director.currentViewController as? ChatViewController
 				{
-					if let sender = createSender(name: name)
+					if let sender = viewController.createSender(name: name)
 					{
 						let msg = viewController.createMessage(text: message, sender: sender)
 						viewController.addMessage(message: msg)
@@ -96,7 +81,7 @@ class BaseScene: NSObject
 					let imgName = scenario[2]
 					
 					if let img = UIImage(named: imgName),
-					   let sender = createSender(name: name)
+					   let sender = viewController.createSender(name: name)
 					{
 						let msg = MockMessage(
 							image: img,

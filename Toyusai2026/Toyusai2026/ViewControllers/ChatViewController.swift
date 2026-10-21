@@ -13,9 +13,10 @@ import SwiftyJSON
 
 class ChatViewController: MessagesViewController
 {
-    @IBOutlet weak var headerView: UIView?
-    
-    //メッセージまわり
+    @IBOutlet weak var headerView: UIView!
+	@IBOutlet weak var cameraPopupView: UIView!
+
+	//メッセージまわり
     var messageList: [MockMessage] = []
     lazy var formatter: DateFormatter =
     {
@@ -27,6 +28,8 @@ class ChatViewController: MessagesViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+		
+		self.messageList = []
         
 		self.messagesCollectionView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 30/255, alpha: 1.0)
 		self.messagesCollectionView.contentInset.top = 16
@@ -40,6 +43,12 @@ class ChatViewController: MessagesViewController
         // メッセージ入力時に一番下までスクロール
 		self.scrollsToBottomOnKeyboardBeginsEditing = true
 		self.maintainPositionOnKeyboardFrameChanged = true
+		
+		self.messagesCollectionView.contentInset.top = 50
+		self.messageInputBar.isHidden = true
+		
+		self.view.bringSubviewToFront(self.headerView)
+		self.view.bringSubviewToFront(self.cameraPopupView)
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -47,9 +56,9 @@ class ChatViewController: MessagesViewController
         super.viewDidAppear(animated)
 		
 		let director = GameDirector.shared
-		director.changeScene(scene: FirstScene(), viewController: self)
+		director.changeScene(scene: StudentCardScene(), viewController: self)
         
-        self.messageList = []
+		
     }
 	
 	private func alignSenderNameWithMessageText()
@@ -99,6 +108,20 @@ class ChatViewController: MessagesViewController
 						   messageId: UUID().uuidString, date: Date())
     }
     
+	func createSender(name:String) -> SenderType?
+	{
+		var sender:SenderType? = nil
+		if (name == "伊志郷")
+		{
+			sender = Sender(senderId: "2", displayName: name)
+		}
+		else if (name == "山井")
+		{
+			sender = Sender(senderId: "3", displayName: name)
+		}
+
+		return sender
+	}
 	
 }
 
@@ -149,8 +172,6 @@ extension ChatViewController: MessagesDataSource
         
         let name = message.sender.displayName
         return NSAttributedString(string: name, attributes: [.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16),
-                                                             .foregroundColor: UIColor(red: 181/255, green: 98/255, blue: 3/255, alpha: 1.0)])
-        
     }
     
 }
