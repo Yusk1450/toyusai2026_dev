@@ -12,9 +12,16 @@ class popUpViewController: BaseViewController
     
     @IBOutlet var popView: UIView!
     @IBOutlet weak var backBtn: UIButton!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var yesBtn: UIButton!
+    @IBOutlet weak var backView: UIView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        self.yesBtn.layer.borderColor = UIColor.white.cgColor
+        self.backView.isHidden = false
     }
     
 
@@ -22,14 +29,19 @@ class popUpViewController: BaseViewController
     {
         self.popView.isHidden = true
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func yesBtn(_ sender: Any)
+    {
+        let condition = true // ここに分岐条件を書く
+        
+        if condition {
+            performSegue(withIdentifier: "toPhoto", sender: nil)
+        } else {
+            performSegue(withIdentifier: "toPaper", sender: nil)
+        }
     }
-    */
+    
+
+    
 
 }
