@@ -23,3 +23,16 @@ target 'Toyusai2026' do
     pod 'SwiftyJSON'
     pod 'MessageKit'
 end
+
+# Podspecs still declare iOS 9–12. Xcode 27 only accepts 15.0–27.0.
+post_install do |installer|
+  minimum = 16.4
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      current = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+      if current.nil? || current.to_f < minimum
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum.to_s
+      end
+    end
+  end
+end

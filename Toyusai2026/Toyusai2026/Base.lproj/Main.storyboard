@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +27,7 @@
                                             <fragment content="伊志郷ゼミ　グループチャット">
                                                 <attributes>
                                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="20" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="20"/>
                                                     <real key="NSKern" value="0.0"/>
                                                     <font key="NSOriginalFont" size="12" name="Times-Roman"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0">
@@ -47,7 +47,7 @@
                                             <fragment content="ゲーム終了まで">
                                                 <attributes>
                                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="16" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="16"/>
                                                     <font key="NSOriginalFont" metaFont="system" size="17"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -62,7 +62,7 @@
                                             <fragment content="600">
                                                 <attributes>
                                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="40" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="40"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -76,7 +76,7 @@
                                             <fragment content="秒">
                                                 <attributes>
                                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="16" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="16"/>
                                                     <font key="NSOriginalFont" metaFont="system" size="17"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -104,7 +104,7 @@
                                     <segue destination="mxv-fl-pAh" kind="embed" id="pNZ-FM-xPG"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-5X-bEX">
+                            <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-5X-bEX">
                                 <rect key="frame" x="540" y="72" width="540" height="739"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
@@ -123,7 +123,7 @@
         <!--Chat View Controller-->
         <scene sceneID="Wjg-6r-Qib">
             <objects>
-                <viewController id="mxv-fl-pAh" customClass="chatViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="mxv-fl-pAh" customClass="ChatViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="goW-oc-otX">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="739"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +208,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="14:50">
                                         <attributes>
-                                            <font key="NSFont" size="64" name="MPLUS1p-Bold"/>
+                                            <font key="NSFont" metaFont="system" size="64"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -271,7 +271,7 @@
                                             <fragment content="カメラを起動します">
                                                 <attributes>
                                                     <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="24" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="24"/>
                                                     <font key="NSOriginalFont" metaFont="system" size="17"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
@@ -289,7 +289,7 @@
                                                 <fragment content="起動します">
                                                     <attributes>
                                                         <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <font key="NSFont" size="24" name="ShipporiMincho-Bold"/>
+                                                        <font key="NSFont" metaFont="system" size="24"/>
                                                         <font key="NSOriginalFont" metaFont="system" size="18"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>

@@ -13,13 +13,12 @@ import SwiftyJSON
 
 class ViewController: BaseViewController
 {
-    
-    
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 
 	}
+	
 
 
 }

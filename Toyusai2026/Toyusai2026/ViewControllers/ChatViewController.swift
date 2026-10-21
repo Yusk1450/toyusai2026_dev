@@ -11,9 +11,8 @@ import InputBarAccessoryView
 import Alamofire
 import SwiftyJSON
 
-class chatViewController: MessagesViewController
+class ChatViewController: MessagesViewController
 {
-    
     @IBOutlet weak var headerView: UIView?
     
     //メッセージまわり
@@ -24,69 +23,83 @@ class chatViewController: MessagesViewController
         formatter.dateStyle = .medium
         return formatter
     }()
-    
-    //タイマー周り
-    var remainGameTime = 600
-    var gameTimer:Timer?
-    
+        
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
-        messagesCollectionView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 30/255, alpha: 1.0)
-
+		self.messagesCollectionView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 30/255, alpha: 1.0)
+		self.messagesCollectionView.contentInset.top = 16
         
-        
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
-        messagesCollectionView.messageCellDelegate = self
+		self.messagesCollectionView.messagesDataSource = self
+		self.messagesCollectionView.messagesLayoutDelegate = self
+		self.messagesCollectionView.messagesDisplayDelegate = self
+		self.messagesCollectionView.messageCellDelegate = self
+		self.alignSenderNameWithMessageText()
         
         // メッセージ入力時に一番下までスクロール
-        scrollsToBottomOnKeyboardBeginsEditing = true
-        maintainPositionOnKeyboardFrameChanged = true
-
+		self.scrollsToBottomOnKeyboardBeginsEditing = true
+		self.maintainPositionOnKeyboardFrameChanged = true
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+	{
         super.viewDidAppear(animated)
+		
+		let director = GameDirector.shared
+		director.changeScene(scene: FirstScene(), viewController: self)
         
-        self.messageList = self.getMessages()
-        self.messagesCollectionView.reloadData()
-        DispatchQueue.main.async
-        {
-            self.messagesCollectionView.scrollToBottom()
-        }
+        self.messageList = []
     }
-    //メッセージ受け取り
-    func getMessages() -> [MockMessage]
+	
+	private func alignSenderNameWithMessageText()
+	{
+		guard let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout else { return }
+
+		let avatarSide: CGFloat = 36
+		let avatarSize = CGSize(width: avatarSide, height: avatarSide)
+		layout.setMessageIncomingAvatarSize(avatarSize)
+		layout.setMessageOutgoingAvatarSize(avatarSize)
+
+		let textInsets = UIEdgeInsets.zero
+		layout.textMessageSizeCalculator.incomingMessageLabelInsets = textInsets
+		layout.textMessageSizeCalculator.outgoingMessageLabelInsets = textInsets
+		layout.attributedTextMessageSizeCalculator.incomingMessageLabelInsets = textInsets
+		layout.attributedTextMessageSizeCalculator.outgoingMessageLabelInsets = textInsets
+
+		let incomingInset = avatarSide + layout.textMessageSizeCalculator.incomingMessagePadding.left
+		let outgoingInset = avatarSide + layout.textMessageSizeCalculator.outgoingMessagePadding.right
+		layout.setMessageIncomingMessageTopLabelAlignment(
+			LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: incomingInset, bottom: 0, right: 0))
+		)
+		layout.setMessageOutgoingMessageTopLabelAlignment(
+			LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: outgoingInset))
+		)
+	}
+
+	// メッセージを追加する
+	func addMessage(message:MockMessage)
+	{
+		self.messageList.append(message)
+		
+		Task { @MainActor in
+			self.messagesCollectionView.reloadData()
+			self.messagesCollectionView.scrollToBottom()
+		}
+	}
+	
+	func createMessage(text: String, sender:SenderType) -> MockMessage
     {
-        //送る画像を入れる
-        let myImageAsset = UIImage(named: "list") ?? UIImage()
-        return [
-            createMessage(text: "今年度の伊志郷ゼミの在籍者リストです メッセージを押すと、画面が開きます"),
-            
-            MockMessage(
-                        image: myImageAsset,
-                        sender: otherSender(),
-                        messageId: UUID().uuidString,
-                        date: Date()
-                        )
-        ]
-    }
-    func createMessage(text: String) -> MockMessage
-    {
-        let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16),
-                                                                           .foregroundColor: UIColor.white])
-        return MockMessage(attributedText: attributedText, sender: otherSender(), messageId: UUID().uuidString, date: Date())
+        let attributedText = NSAttributedString(string: text, attributes: [
+			.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16),
+			.foregroundColor: UIColor.white
+		])
+        return MockMessage(attributedText: attributedText,
+						   sender: sender,
+						   messageId: UUID().uuidString, date: Date())
     }
     
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-
-
+	
 }
 
 func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,21 +111,14 @@ func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 }
 
 // MARK: - MessagesDataSource
-extension chatViewController: MessagesDataSource
+extension ChatViewController: MessagesDataSource
 {
-    
     // MessageKit が要求する型（SenderType）を返すように修正
     func currentSender() -> SenderType
     {
         return Sender(id: "1", displayName: "自分")
     }
-    
-    func otherSender() -> Sender
-    {
-        return Sender(id: "2", displayName: "伊志郷先生")
-    }
-    
-    
+        
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int
     {
         return messageList.count
@@ -131,10 +137,12 @@ extension chatViewController: MessagesDataSource
     // メッセージの上に文字を表示（名前）
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString?
     {
-        // 一つ前と同じ人かチェック
-        if indexPath.section > 0 {
+        // ひとつ前と同じ人か確認する
+        if (indexPath.section > 0)
+		{
             let prevSender = messageList[indexPath.section - 1].sender.senderId
-            if prevSender == message.sender.senderId {
+            if (prevSender == message.sender.senderId)
+			{
                 return nil
             }
         }
@@ -148,7 +156,7 @@ extension chatViewController: MessagesDataSource
 }
 
 // MARK: - MessagesDisplayDelegate
-extension chatViewController: MessagesDisplayDelegate
+extension ChatViewController: MessagesDisplayDelegate
 {
     
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
@@ -203,7 +211,7 @@ extension chatViewController: MessagesDisplayDelegate
 }
 
 // MARK: - MessagesLayoutDelegate
-extension chatViewController: MessagesLayoutDelegate
+extension ChatViewController: MessagesLayoutDelegate
 {
     
  
@@ -225,7 +233,7 @@ extension chatViewController: MessagesLayoutDelegate
 }
 
 // MARK: - MessageCellDelegate
-extension chatViewController: MessageCellDelegate
+extension ChatViewController: MessageCellDelegate
 {
     func didTapMessage(in cell: MessageCollectionViewCell)
     {
@@ -234,7 +242,7 @@ extension chatViewController: MessageCellDelegate
 }
 
 // MARK: - InputBarAccessoryViewDelegate (名前を最新版に変更)
-extension chatViewController: InputBarAccessoryViewDelegate
+extension ChatViewController: InputBarAccessoryViewDelegate
 {
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String)
