@@ -13,7 +13,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);  // Create MFRC522 instance
 
 const char* ssid = "Buffalo-G-F030";
 const char* pwd = "4dp_1450";
-const IPAddress ip(192,168,13.201);
+const IPAddress ip(192,168,13,201);
 const IPAddress gateway(192,168,13,1);
 const IPAddress subnet(255,255,255,0);
 
