@@ -37,7 +37,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" animates="NO" id="Zio-XR-Xfw"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toChat" animates="NO" id="Zio-XR-Xfw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WrW-sA-CSu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -141,8 +141,9 @@
                     <connections>
                         <outlet property="headerView" destination="mWl-bg-DX0" id="TuE-HE-Q3e"/>
                         <segue destination="jAI-ao-pks" kind="show" identifier="toStudentsCard" animates="NO" id="bCb-d7-kR1"/>
-                        <segue destination="VXQ-Q1-b3e" kind="show" animates="NO" id="fmr-of-r3L"/>
-                        <segue destination="67T-8h-ofa" kind="show" animates="NO" id="AmQ-JF-Mma"/>
+                        <segue destination="VXQ-Q1-b3e" kind="show" identifier="toPhotoPop" animates="NO" id="fmr-of-r3L"/>
+                        <segue destination="67T-8h-ofa" kind="show" identifier="toPaperPop" animates="NO" id="AmQ-JF-Mma"/>
+                        <segue destination="QVw-jn-yMI" kind="show" identifier="toBad" animates="NO" id="QKV-Bc-gAz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -260,7 +261,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="W7Q-Sr-Aet"/>
                     <connections>
-                        <segue destination="Rqv-iv-YqZ" kind="show" animates="NO" id="ZPH-ne-Mgk"/>
+                        <segue destination="Rqv-iv-YqZ" kind="show" identifier="toPhotoAR" animates="NO" id="ZPH-ne-Mgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l21-3C-0wE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -330,6 +331,28 @@
             </objects>
             <point key="canvasLocation" x="189" y="1561"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="5Te-On-rAG">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="QVw-jn-yMI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fPN-bM-FcK">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="badEnd" translatesAutoresizingMaskIntoConstraints="NO" id="vOv-ON-syk">
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8Rd-Rv-opg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Jjx-Iw-fjd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uPw-Yq-vUu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="189" y="2281"/>
+        </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="x83-10-Zwu">
             <objects>
@@ -389,7 +412,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gkl-38-cXh"/>
                     <connections>
-                        <segue destination="uVm-U0-5wF" kind="show" animates="NO" id="xhj-ni-z8k"/>
+                        <segue destination="uVm-U0-5wF" kind="show" identifier="toPaperAR" animates="NO" id="xhj-ni-z8k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvA-XX-82R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -464,6 +487,7 @@
     <resources>
         <image name="StartBtn" width="263" height="93"/>
         <image name="backBtn" width="40" height="40"/>
+        <image name="badEnd" width="1080" height="810"/>
         <image name="hashiguti" width="400" height="247.5"/>
         <image name="nextBtn" width="70" height="70"/>
         <image name="rewindBtn" width="70" height="70"/>
