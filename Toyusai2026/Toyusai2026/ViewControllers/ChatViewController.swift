@@ -128,9 +128,15 @@ class ChatViewController: MessagesViewController
 	}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPopup"
+        if segue.identifier == "toPhotoPop"
         {
-            if let popUpVC = segue.destination as? popUpViewController {
+            if let popUpVC = segue.destination as? PhotoPopViewController {
+            }
+        }
+        
+        if segue.identifier == "toPaperPop"
+        {
+            if let popUpVC = segue.destination as? PaperPopViewController {
             }
         }
         
@@ -139,6 +145,12 @@ class ChatViewController: MessagesViewController
             let StudentCardVC = segue.destination as! StudentsCardViewController
             StudentCardVC.studentName = self.studentName
         }
+        
+        if segue.identifier == "toBadEnd"
+        {
+            let StudentCardVC = segue.destination as! BadEndViewController
+        }
+
     }
 	
 }

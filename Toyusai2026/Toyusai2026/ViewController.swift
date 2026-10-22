@@ -13,13 +13,18 @@ import SwiftyJSON
 
 class ViewController: BaseViewController
 {
-	override func viewDidLoad()
+    @IBOutlet weak var StartBtn: UIButton!
+    override func viewDidLoad()
 	{
 		super.viewDidLoad()
 
 	}
 	
 
-
+    @IBAction func StartBtn(_ sender: Any)
+    {
+        performSegue(withIdentifier: "toChat", sender: nil)
+    }
+    
 }
 

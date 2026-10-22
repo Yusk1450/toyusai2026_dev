@@ -17,26 +17,30 @@
         <!--View Controller-->
         <scene sceneID="7No-WQ-PYO">
             <objects>
-                <viewController id="xdr-Tl-gqI" sceneMemberID="viewController">
+                <viewController id="xdr-Tl-gqI" customClass="ViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hZy-dU-CpY">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="title" translatesAutoresizingMaskIntoConstraints="NO" id="QQq-Et-ski">
                                 <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FTl-4N-JoY">
                                 <rect key="frame" x="413" y="645" width="255" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="StartBtn"/>
+                                <connections>
+                                    <action selector="StartBtn:" destination="xdr-Tl-gqI" eventType="touchUpInside" id="quh-5p-dWK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wx9-Cl-n5Q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="StartBtn" destination="FTl-4N-JoY" id="h6a-KW-Itc"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="toChat" animates="NO" id="Zio-XR-Xfw"/>
                     </connections>
                 </viewController>
@@ -143,7 +147,7 @@
                         <segue destination="jAI-ao-pks" kind="show" identifier="toStudentsCard" animates="NO" id="bCb-d7-kR1"/>
                         <segue destination="VXQ-Q1-b3e" kind="show" identifier="toPhotoPop" animates="NO" id="fmr-of-r3L"/>
                         <segue destination="67T-8h-ofa" kind="show" identifier="toPaperPop" animates="NO" id="AmQ-JF-Mma"/>
-                        <segue destination="QVw-jn-yMI" kind="show" identifier="toBad" animates="NO" id="QKV-Bc-gAz"/>
+                        <segue destination="QVw-jn-yMI" kind="show" identifier="toBadEnd" animates="NO" id="QKV-Bc-gAz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -185,10 +189,10 @@
             </objects>
             <point key="canvasLocation" x="847" y="1561"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo Pop View Controller-->
         <scene sceneID="L4F-Qh-TKB">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="VXQ-Q1-b3e" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="VXQ-Q1-b3e" customClass="PhotoPopViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SVz-pu-AG2">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,6 +230,9 @@
                                         <state key="normal" title="起動">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="toArBtn:" destination="VXQ-Q1-b3e" eventType="touchUpInside" id="4Fw-q0-TBc"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o5u-JR-U1f">
                                         <rect key="frame" x="2" y="477" width="538" height="2"/>
@@ -246,12 +253,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="W7Q-Sr-Aet"/>
                     <connections>
+                        <outlet property="toArBtn" destination="HE7-yu-T3a" id="FFe-gP-Fma"/>
                         <segue destination="Rqv-iv-YqZ" kind="show" identifier="toPhotoAR" animates="NO" id="ZPH-ne-Mgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l21-3C-0wE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188.88888888888889" y="845.92592592592587"/>
+            <point key="canvasLocation" x="189" y="846"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="Sbw-lc-Dnf">
@@ -316,10 +324,10 @@
             </objects>
             <point key="canvasLocation" x="189" y="1561"/>
         </scene>
-        <!--View Controller-->
+        <!--Bad End View Controller-->
         <scene sceneID="5Te-On-rAG">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="QVw-jn-yMI" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="QVw-jn-yMI" customClass="BadEndViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPN-bM-FcK">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,15 +341,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jjx-Iw-fjd"/>
+                    <connections>
+                        <outlet property="imgView" destination="vOv-ON-syk" id="ImQ-bN-SvW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPw-Yq-vUu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="189" y="2281"/>
         </scene>
-        <!--Pop Up View Controller-->
+        <!--Paper Pop View Controller-->
         <scene sceneID="x83-10-Zwu">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="67T-8h-ofa" customClass="popUpViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="67T-8h-ofa" customClass="PaperPopViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EW0-Mt-Ui8">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -377,6 +388,9 @@
                                         <fontDescription key="fontDescription" name="ShipporiMincho-Bold" family="Shippori Mincho" pointSize="24"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="起動"/>
+                                        <connections>
+                                            <action selector="toArBtn:" destination="67T-8h-ofa" eventType="touchUpInside" id="gZ8-de-E3a"/>
+                                        </connections>
                                     </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9ex-86-oVi">
                                         <rect key="frame" x="0.0" y="0.0" width="2" height="738"/>
@@ -397,6 +411,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gkl-38-cXh"/>
                     <connections>
+                        <outlet property="toArBtn" destination="1hn-dp-7vh" id="amh-ST-oSt"/>
                         <segue destination="uVm-U0-5wF" kind="show" identifier="toPaperAR" animates="NO" id="xhj-ni-z8k"/>
                     </connections>
                 </viewController>

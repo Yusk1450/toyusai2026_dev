@@ -67,7 +67,7 @@ class paperARViewController: BaseViewController,ARSCNViewDelegate
                 )
                 
                 // 2. 平面の表面（マテリアル）に表示したい画像（test2）を設定する
-                plane.firstMaterial?.diffuse.contents = UIImage(named: "paper")
+                plane.firstMaterial?.diffuse.contents = UIImage(named: "ronbun")
                 
                 // 3. 平面からノードを作成
                 let planeNode = SCNNode(geometry: plane)

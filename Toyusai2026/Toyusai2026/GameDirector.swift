@@ -28,12 +28,12 @@ class GameDirector: NSObject
 	var delegate:GameDirectorDelegate?
 	
 	// サーバIP
-	let ip = "192.168.0.199"
+	let ip = "192.168.13.200"
 	// サーバURL
 	var url:String!
 
 	// OSCポート番号
-	let port:UInt16 = 33333
+	let port:UInt16 = 5555
 	private let oscServer:OSCUdpServer!
 	
 	// 残り時間
