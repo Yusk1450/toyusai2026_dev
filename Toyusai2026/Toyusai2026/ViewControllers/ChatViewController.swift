@@ -14,7 +14,7 @@ import SwiftyJSON
 class ChatViewController: MessagesViewController
 {
     @IBOutlet weak var headerView: UIView!
-	@IBOutlet weak var cameraPopupView: UIView!
+	@IBOutlet weak var cardPopupView: UIView!
 
 	//メッセージまわり
     var messageList: [MockMessage] = []
@@ -48,7 +48,7 @@ class ChatViewController: MessagesViewController
 		self.messageInputBar.isHidden = true
 		
 		self.view.bringSubviewToFront(self.headerView)
-		self.view.bringSubviewToFront(self.cameraPopupView)
+		self.view.bringSubviewToFront(self.cardPopupView)
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -85,6 +85,15 @@ class ChatViewController: MessagesViewController
 			LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: outgoingInset))
 		)
 	}
+
+    func showCardPopup(imagename: String)
+    {
+        cardPopupView.isHidden = false
+        if let popup = self.children.first as? cardViewController {
+            popup.cardImage.image = UIImage(named: imagename)
+        }
+        // cardPopupViewController?.image = UIImage(named: imageName)
+    }
 
 	// メッセージを追加する
 	func addMessage(message:MockMessage)
@@ -171,7 +180,7 @@ extension ChatViewController: MessagesDataSource
         }
         
         let name = message.sender.displayName
-        return NSAttributedString(string: name, attributes: [.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16),
+        return NSAttributedString(string: name, attributes: [.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16)])
     }
     
 }

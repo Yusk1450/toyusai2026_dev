@@ -204,7 +204,7 @@ extension GameDirector: OSCUdpServerDelegate
 
 					if let cardUUID = message.arguments[0] as? String
 					{
-						
+                        scene.showStudentCard(uuid: cardUUID)
 					}
 				}
 			}

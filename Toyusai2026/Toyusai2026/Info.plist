@@ -26,5 +26,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>oscのため</string>
+	<key>NSAppTransportSecurity</key>
+	<dict/>
 </dict>
 </plist>
