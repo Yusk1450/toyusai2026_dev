@@ -14,8 +14,6 @@ import SwiftyJSON
 class ChatViewController: MessagesViewController
 {
     @IBOutlet weak var headerView: UIView!
-	@IBOutlet weak var cardPopupView: UIView!
-
 	//メッセージまわり
     var messageList: [MockMessage] = []
     lazy var formatter: DateFormatter =
@@ -25,6 +23,7 @@ class ChatViewController: MessagesViewController
         return formatter
     }()
         
+    var studentName = ""
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -48,7 +47,6 @@ class ChatViewController: MessagesViewController
 		self.messageInputBar.isHidden = true
 		
 		self.view.bringSubviewToFront(self.headerView)
-		self.view.bringSubviewToFront(self.cardPopupView)
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -59,6 +57,12 @@ class ChatViewController: MessagesViewController
 		director.changeScene(scene: StudentCardScene(), viewController: self)
         
 		
+    }
+    
+    func StudentsCard(name:String)
+    {
+        self.studentName = name
+        self.performSegue(withIdentifier: "toStudentsCard", sender: nil)
     }
 	
 	private func alignSenderNameWithMessageText()
@@ -85,15 +89,6 @@ class ChatViewController: MessagesViewController
 			LabelAlignment(textAlignment: .right, textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: outgoingInset))
 		)
 	}
-
-    func showCardPopup(imagename: String)
-    {
-        cardPopupView.isHidden = false
-        if let popup = self.children.first as? cardViewController {
-            popup.cardImage.image = UIImage(named: imagename)
-        }
-        // cardPopupViewController?.image = UIImage(named: imageName)
-    }
 
 	// メッセージを追加する
 	func addMessage(message:MockMessage)
@@ -131,16 +126,23 @@ class ChatViewController: MessagesViewController
 
 		return sender
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPopup"
+        {
+            if let popUpVC = segue.destination as? popUpViewController {
+            }
+        }
+        
+        if segue.identifier == "toStudentsCard"
+        {
+            let StudentCardVC = segue.destination as! StudentsCardViewController
+            StudentCardVC.studentName = self.studentName
+        }
+    }
 	
 }
 
-func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "toPopup"
-    {
-        if let popUpVC = segue.destination as? popUpViewController {
-        }
-    }
-}
 
 // MARK: - MessagesDataSource
 extension ChatViewController: MessagesDataSource
@@ -196,9 +198,10 @@ extension ChatViewController: MessagesDisplayDelegate
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
     {
-        return isFromCurrentSender(message: message) ?
-            UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 0) :
-            UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 0)
+        // return isFromCurrentSender(message: message) ?
+            // UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 0) :
+            // UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 0)
+        return UIColor(named: "csblack")!
     }
     
 //    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle

@@ -3,6 +3,7 @@
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -95,22 +96,19 @@
                                         <color key="backgroundColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.30588235294117649" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.10196078431372549" green="0.10196078431372549" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="csblack"/>
                             </view>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ZP-5X-bEX" userLabel="Card Popup View">
                                 <rect key="frame" x="540" y="71" width="540" height="739"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="jAI-ao-pks" kind="embed" id="bxS-OU-CEC"/>
-                                </connections>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="cardPopupView" destination="1ZP-5X-bEX" id="2Zl-Bc-s2E"/>
                         <outlet property="headerView" destination="mWl-bg-DX0" id="TuE-HE-Q3e"/>
+                        <segue destination="jAI-ao-pks" kind="show" identifier="toStudentsCard" animates="NO" id="bCb-d7-kR1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -318,48 +316,69 @@
             </objects>
             <point key="canvasLocation" x="516" y="820"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="EqL-R3-9cw">
-            <objects>
-                <viewController id="DfN-4M-9bw" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="J6H-MK-kNO">
-                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="mAs-cr-EZe"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="buS-lz-bPe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-646" y="99"/>
-        </scene>
-        <!--Card View Controller-->
+        <!--Students Card View Controller-->
         <scene sceneID="NKH-q8-sr2">
             <objects>
-                <viewController id="jAI-ao-pks" customClass="cardViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="jAI-ao-pks" customClass="StudentsCardViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zFb-Pc-jUV">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="739"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLf-ag-eep">
-                                <rect key="frame" x="150" y="305" width="240" height="128"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4G-MY-Kzh">
+                                <rect key="frame" x="540" y="72" width="540" height="738"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hashiguti" translatesAutoresizingMaskIntoConstraints="NO" id="Evx-Qh-BCV">
-                                <rect key="frame" x="70" y="240" width="400" height="247"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="hashiguti" translatesAutoresizingMaskIntoConstraints="NO" id="Evx-Qh-BCV">
+                                        <rect key="frame" x="70" y="246" width="400" height="247"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g0w-Au-GaH">
+                                        <rect key="frame" x="138" y="565" width="264" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="データが見つかりません">
+                                                <attributes>
+                                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="24" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSOriginalFont" metaFont="system" size="17"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoe-BZ-gww">
+                                        <rect key="frame" x="0.0" y="0.0" width="2" height="738"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" name="csgray"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MiM-QA-scX">
+                                        <rect key="frame" x="468" y="32" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="backBtn">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toBack:" destination="jAI-ao-pks" eventType="touchUpInside" id="3Ee-7s-LPb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="csblack"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6mD-zK-N3y"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <navigationItem key="navigationItem" id="0nW-Nz-Bno"/>
                     <connections>
-                        <outlet property="cardImage" destination="Evx-Qh-BCV" id="8Xm-BG-tqo"/>
+                        <outlet property="cardImage" destination="Evx-Qh-BCV" id="VH4-vp-Ej8"/>
+                        <outlet property="noDataText" destination="g0w-Au-GaH" id="bbG-Sc-mXo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AE9-yv-Kny" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188.88888888888889" y="-614.44444444444446"/>
+            <point key="canvasLocation" x="188.88888888888889" y="-614.81481481481478"/>
         </scene>
     </scenes>
     <resources>
@@ -367,6 +386,12 @@
         <image name="hashiguti" width="400" height="247.5"/>
         <image name="nextBtn" width="70" height="70"/>
         <image name="rewindBtn" width="70" height="70"/>
+        <namedColor name="csblack">
+            <color red="0.10196079313755035" green="0.10196079313755035" blue="0.11764705181121826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="csgray">
+            <color red="0.29019612073898315" green="0.29019612073898315" blue="0.30588236451148987" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
