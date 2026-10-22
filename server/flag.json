@@ -20,6 +20,11 @@
         "clear": false
     },
     {
+        "comment": "プロジェクション開始",
+        "name": "start_projection",
+        "clear": false
+    },
+    {
         "comment": "ログイン",
         "name": "login",
         "clear": false
