@@ -122,7 +122,17 @@ class BaseScene: NSObject
 			}
 			else if (cmd == "wait")
 			{
-				
+				// 待機時間が指定されている場合
+				if (scenario.count == 2)
+				{
+					let intervalTime = TimeInterval(scenario[1])
+					
+					self.timer = Timer.scheduledTimer(timeInterval: intervalTime!,
+													  target: self,
+													  selector: #selector(self.nextMessage(timer:)),
+													  userInfo: nil,
+													  repeats: false)
+				}
 				
                 isWait = true
 			}
@@ -138,11 +148,11 @@ class BaseScene: NSObject
 											  userInfo: nil,
 											  repeats: false)
 		}
-		else
-		{
-			self.timer?.invalidate()
-			self.timer = nil
-		}
+//		else
+//		{
+//			self.timer?.invalidate()
+//			self.timer = nil
+//		}
 	}
 	
 	func update(viewController:UIViewController?)
