@@ -21,6 +21,9 @@ class VRScene: BaseScene
             ["img", "平崎", "guidePaper"],
 			["segue", "toPaperPop"]
         ]
+		
+		let director = GameDirector.shared
+		director.sendFlagToServer(flagIndex: 2)
         
         self.startScenario()
         self.delegate?.gameSceneDidStart(scene: self)

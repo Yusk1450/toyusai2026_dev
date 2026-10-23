@@ -144,6 +144,7 @@
                     <navigationItem key="navigationItem" id="Pjh-tO-Ntv"/>
                     <connections>
                         <outlet property="headerView" destination="mWl-bg-DX0" id="TuE-HE-Q3e"/>
+                        <outlet property="timerLbl" destination="0sd-nS-BGF" id="jVv-i6-TuA"/>
                         <segue destination="jAI-ao-pks" kind="show" identifier="toStudentsCard" animates="NO" id="bCb-d7-kR1"/>
                         <segue destination="VXQ-Q1-b3e" kind="show" identifier="toPhotoPop" animates="NO" id="fmr-of-r3L"/>
                         <segue destination="67T-8h-ofa" kind="show" identifier="toPaperPop" animates="NO" id="AmQ-JF-Mma"/>

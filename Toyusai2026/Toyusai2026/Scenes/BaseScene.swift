@@ -157,6 +157,20 @@ class BaseScene: NSObject
 	
 	func update(viewController:UIViewController?)
 	{
+		let director = GameDirector.shared
+		
+		if (director.gimmickFlags[0] &&
+			director.gimmickFlags[1] &&
+			director.gimmickFlags[2] &&
+			director.gimmickFlags[3] &&
+			!director.gimmickFlags[4]
+			)
+		{
+			director.sendFlagToServer(flagIndex: 4)
+			
+			director.changeScene(scene: ShadowScene())
+		}
+		
 	}
 	
 	func stop(viewController:UIViewController?)

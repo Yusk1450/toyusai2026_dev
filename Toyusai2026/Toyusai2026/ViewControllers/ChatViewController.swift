@@ -11,10 +11,16 @@ import InputBarAccessoryView
 import Alamofire
 import SwiftyJSON
 
-class ChatViewController: MessagesViewController
+class ChatViewController: MessagesViewController, GameDirectorDelegate
 {
+	func gameDirectorDidUpdate(gameDirector: GameDirector)
+	{
+		self.timerLbl.text = gameDirector.remainGameTime.description
+	}
+	
     @IBOutlet weak var headerView: UIView!
-
+	@IBOutlet weak var timerLbl: UILabel!
+	
 	var messageList: [MockMessage] = []
     lazy var formatter: DateFormatter =
     {
@@ -49,6 +55,7 @@ class ChatViewController: MessagesViewController
 		self.view.bringSubviewToFront(self.headerView)
 		
 		let director = GameDirector.shared
+		director.delegate = self
 		director.startGame()
 		director.changeScene(scene: StudentCardScene())
     }
@@ -311,7 +318,5 @@ extension ChatViewController: InputBarAccessoryViewDelegate
         messagesCollectionView.scrollToBottom()
     }
 }
-
-
 
 

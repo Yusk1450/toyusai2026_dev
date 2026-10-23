@@ -17,7 +17,6 @@ enum OSCAddress: String
 
 protocol GameDirectorDelegate: AnyObject
 {
-	func gameDirectorDidChangeNextScript(gameDirector:GameDirector, script:String)
 	func gameDirectorDidUpdate(gameDirector:GameDirector)
 }
 
