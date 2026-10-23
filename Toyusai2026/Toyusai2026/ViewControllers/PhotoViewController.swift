@@ -8,6 +8,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import AVFoundation
 
 class PhotoViewController: BaseViewController,ARSCNViewDelegate
 {
@@ -17,6 +18,8 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var rewindBtn: UIButton!
+
+    var AVPlayer: AVPlayer?
     
     override func viewDidLoad()
 	{
@@ -58,9 +61,9 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor)
 	{
         guard let imageAnchor = anchor as? ARImageAnchor else {return}
-        let videoNode = SKVideoNode(fileNamed: "test2.mp4")
+        let videoNode = SKVideoNode(fileNamed: "photoAR.mp4")
         videoNode.play()
-        let videoScene = SKScene(size: CGSize(width: 1371, height: 1080))
+        let videoScene = SKScene(size: CGSize(width: 1920, height: 1080))
         videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
         videoNode.yScale = -1.0
         videoScene.addChild(videoNode)
