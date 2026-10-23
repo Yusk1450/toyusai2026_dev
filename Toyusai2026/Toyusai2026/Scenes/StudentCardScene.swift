@@ -9,8 +9,6 @@ import UIKit
 
 class StudentCardScene: BaseScene
 {
-	var isLoadNishima = false
-	
 	override func start(viewController:UIViewController?)
 	{
 		self.scenario = [

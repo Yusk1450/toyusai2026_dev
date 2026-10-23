@@ -232,12 +232,8 @@ extension GameDirector: OSCUdpServerDelegate
 							
 							if let scene = self.currentScene as? StudentCardScene
 							{
-								if (!scene.isLoadNishima)
-								{
-									scene.isLoadNishima = true
-									// シナリオを再開する
-									scene.startScenario()
-								}
+								// シナリオを再開する
+								scene.startScenario()
 							}
 						}
 						// 平﨑
@@ -286,12 +282,8 @@ extension GameDirector: OSCUdpServerDelegate
 
 							if let scene = self.currentScene as? StudentCardScene
 							{
-								if (!scene.isLoadNishima)
-								{
-									scene.isLoadNishima = true
-									// シナリオを再開する
-									scene.startScenario()
-								}
+								// シナリオを再開する
+								scene.startScenario()
 							}
 						}
 						// 平﨑

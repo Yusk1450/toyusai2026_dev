@@ -37,6 +37,15 @@ class BaseScene: NSObject
 	// シナリオを開始する
 	func startScenario()
 	{
+		if let timer = self.timer
+		{
+			// すでに開始していたら
+			if (timer.isValid)
+			{
+				return
+			}
+		}
+		
         self.timer?.invalidate()
 		self.timer = Timer.scheduledTimer(timeInterval: 1.0,
 										  target: self,
