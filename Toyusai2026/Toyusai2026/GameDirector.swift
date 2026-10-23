@@ -233,7 +233,7 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					else if (uuid == "vr")
 					{
-						
+						self.changeScene(scene: VRScene())
 					}
 
 					

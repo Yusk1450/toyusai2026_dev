@@ -65,11 +65,6 @@ class ChatViewController: MessagesViewController
         self.performSegue(withIdentifier: "toStudentsCard", sender: nil)
     }
 	
-	func showPhotoPopViewController()
-	{
-		self.performSegue(withIdentifier: "toPhotoPop", sender: nil)
-	}
-	
 	private func alignSenderNameWithMessageText()
 	{
 		guard let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout else { return }
@@ -117,32 +112,31 @@ class ChatViewController: MessagesViewController
 						   messageId: UUID().uuidString, date: Date())
     }
     
-	func createSender(name:String) -> SenderType?
+	func createSender(name: String) -> SenderType?
 	{
-		var sender:SenderType? = nil
-		if (name == "伊志郷")
+		switch name
 		{
-			sender = Sender(senderId: "2", displayName: name)
+		case "伊志郷":
+			return Sender(senderId: "2", displayName: name)
+		case "山井":
+			return Sender(senderId: "3", displayName: name)
+		case "掛川":
+			return Sender(senderId: "4", displayName: name)
+		case "橋口":
+			return Sender(senderId: "5", displayName: name)
+		case "野々村":
+			return Sender(senderId: "6", displayName: name)
+		case "平崎", "平﨑":
+			return Sender(senderId: "7", displayName: name)
+		case "杉原":
+			return Sender(senderId: "8", displayName: name)
+		case "二島", "二島 彩子":
+			return Sender(senderId: "9", displayName: name)
+		case "鈴村":
+			return Sender(senderId: "10", displayName: name)
+		default:
+			return nil
 		}
-		else if (name == "山井")
-		{
-			sender = Sender(senderId: "3", displayName: name)
-		}
-		else if (name == "掛川")
-		{
-			sender = Sender(senderId: "4", displayName: name)
-		}
-		else if (name == "橋口")
-		{
-			sender = Sender(senderId: "5", displayName: name)
-		}
-		else if (name == "野々村")
-		{
-			sender = Sender(senderId: "6", displayName: name)
-		}
-		
-		
-		return sender
 	}
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -233,22 +227,6 @@ extension ChatViewController: MessagesDisplayDelegate
             // UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 0)
         return UIColor(named: "csblack")!
     }
-    
-//    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle
-//    {
-//
-//        if case .photo = message.kind {
-//            // 完全な四角にする
-//            return .custom { view in
-//                view.layer.cornerRadius = 0 // 角丸を 0 にする（
-//                view.layer.masksToBounds = true
-//            }
-//        }
-//
-//        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
-//        return .bubbleTail(corner, .curved)
-//
-//    }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView)
     {

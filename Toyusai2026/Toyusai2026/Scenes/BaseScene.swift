@@ -89,6 +89,7 @@ class BaseScene: NSObject
 					self.audioPlayer?.play()
 				}
 			}
+			// 画像を表示する
 			else if (cmd == "img")
 			{
 				// 送信者
@@ -111,6 +112,7 @@ class BaseScene: NSObject
 					self.audioPlayer?.play()
 				}
 			}
+			// セグエを起動する
 			else if (cmd == "segue")
 			{
 				let segueName = scenario[1]
@@ -120,6 +122,8 @@ class BaseScene: NSObject
 			}
 			else if (cmd == "wait")
 			{
+				
+				
                 isWait = true
 			}
 		}
