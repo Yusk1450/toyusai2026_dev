@@ -206,7 +206,10 @@ extension ChatViewController: MessagesDataSource
         }
         
         let name = message.sender.displayName
-        return NSAttributedString(string: name, attributes: [.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16)])
+        return NSAttributedString(string: name, attributes:
+                                    [.font: UIFont(
+                                        name: "ShipporiMincho-SemiBold", size: 16),
+                                     .foregroundColor: UIColor.white])
     }
     
 }
@@ -217,14 +220,11 @@ extension ChatViewController: MessagesDisplayDelegate
     
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
     {
-        return isFromCurrentSender(message: message) ? .white : .darkText
+        return UIColor.white        
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor
     {
-        // return isFromCurrentSender(message: message) ?
-            // UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 0) :
-            // UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 0)
         return UIColor(named: "csblack")!
     }
     
@@ -246,7 +246,7 @@ extension ChatViewController: MessagesDisplayDelegate
             }
         }
         
-        let avatar = Avatar(initials: "伊")
+        let avatar = Avatar(image: UIImage(named: "avatar"))
         avatarView.set(avatar: avatar)
     }
 }
