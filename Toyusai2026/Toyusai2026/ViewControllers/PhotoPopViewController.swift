@@ -11,13 +11,6 @@ class PhotoPopViewController: BaseViewController
 {
 
     @IBOutlet weak var toArBtn: UIButton!
-    override func viewDidLoad()
-    
-    {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
     
     @IBAction func toArBtn(_ sender: Any)
     {

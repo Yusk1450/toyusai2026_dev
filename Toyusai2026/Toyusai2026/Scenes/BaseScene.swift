@@ -111,6 +111,13 @@ class BaseScene: NSObject
 					self.audioPlayer?.play()
 				}
 			}
+			else if (cmd == "segue")
+			{
+				let segueName = scenario[1]
+				
+				viewController.performSegue(withIdentifier: segueName, sender: nil)
+
+			}
 			else if (cmd == "wait")
 			{
                 isWait = true
