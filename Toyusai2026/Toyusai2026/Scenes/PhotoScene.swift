@@ -11,6 +11,8 @@ class PhotoScene: BaseScene
 {
 	override func start(viewController:UIViewController?)
 	{
+		super.start(viewController: viewController)
+		
 		self.scenario = [
 			// msg -> 送信者名, 内容
 			["msg", "橋口", "このまえ撮ったゼミ生の集合写真をゼミ室に置いておきました\n変なものが映っていないか確認したいので、カメラで写してもらえませんか？"],
@@ -29,13 +31,9 @@ class PhotoScene: BaseScene
 	
 	override func update(viewController:UIViewController?)
 	{
+		super.update(viewController: viewController)
 		
 		
 		
-	}
-	
-	override func stop(viewController:UIViewController?)
-	{
-		self.timer?.invalidate()
 	}
 }

@@ -12,12 +12,13 @@ class StudentsCardViewController: BaseViewController
     @IBOutlet weak var noDataText: UILabel!
     
     var studentName = ""
+    private var resumeTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.cardImage.image = UIImage(named: studentName)
-        if (studentName == "nishima")
+		if (self.studentName == "nishima")
         {
             self.noDataText.isHidden = false
         }
@@ -25,8 +26,6 @@ class StudentsCardViewController: BaseViewController
         {
             self.noDataText.isHidden = true
         }
-
-
     }
 
     override func viewDidAppear(_ animated: Bool)
@@ -35,16 +34,57 @@ class StudentsCardViewController: BaseViewController
 		
 		let director = GameDirector.shared
 		director.currentViewController = self
-        
+		
+		if (self.studentName == "nishima") {
+			
+			Timer.scheduledTimer(withTimeInterval: 8.0, repeats: false) { timer in
+				
+				if let currentScene = director.currentScene as? StudentCardScene
+				{
+					currentScene.isLoadMishima = true
+				}
+				
+				director.currentViewController = self.presentingViewController
+				
+				self.dismiss(animated: false) {
+					if let currentScene = director.currentScene as? StudentCardScene
+					{
+						currentScene.startScenario()
+					}
+				}
+
+			}
+			
+		}
     }
     
     func StudentsCard(name:String)
     {
+		let director = GameDirector.shared
+		
         self.cardImage.image = UIImage(named: name)
         if (name == "nishima")
         {
             self.noDataText.isHidden = false
-        }
+
+			Timer.scheduledTimer(withTimeInterval: 8.0, repeats: false) { timer in
+
+				if let currentScene = director.currentScene as? StudentCardScene
+				{
+					currentScene.isLoadMishima = true
+				}
+				
+				director.currentViewController = self.presentingViewController
+				
+				self.dismiss(animated: false) {
+					if let currentScene = director.currentScene as? StudentCardScene
+					{
+						currentScene.startScenario()
+					}
+				}
+
+			}
+		}
         else
         {
             self.noDataText.isHidden = true

@@ -26,6 +26,9 @@ class BaseScene: NSObject
 	
 	func start(viewController:UIViewController?)
 	{
+		try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+		try? AVAudioSession.sharedInstance().setActive(true)
+
 		let path = Bundle.main.path(forResource: "sound", ofType: "mp3")
 		let url = URL(fileURLWithPath: path!)
 		self.audioPlayer = try? AVAudioPlayer(contentsOf: url)
@@ -57,7 +60,12 @@ class BaseScene: NSObject
 	// シナリオ用のタイマー
 	@objc func nextMessage(timer:Timer)
 	{
-		let director = GameDirector.shared
+		guard let viewController = GameDirector.shared.currentViewController as? ChatViewController else
+		{
+			return
+		}
+		
+		var isWait = false
 				
 		if self.currentMessageIdx < self.scenario.count
 		{
@@ -72,52 +80,57 @@ class BaseScene: NSObject
 				// 内容
 				let message = scenario[2]
 
-				if let viewController = director.currentViewController as? ChatViewController
+				if let sender = viewController.createSender(name: name)
 				{
-					if let sender = viewController.createSender(name: name)
-					{
-						let msg = viewController.createMessage(text: message, sender: sender)
-						viewController.addMessage(message: msg)
-					}
+					let msg = viewController.createMessage(text: message, sender: sender)
+					viewController.addMessage(message: msg)
+					
+					self.audioPlayer?.currentTime = 0
+					self.audioPlayer?.play()
 				}
 			}
 			else if (cmd == "img")
 			{
-				if let viewController = director.currentViewController as? ChatViewController
+				// 送信者
+				let name = scenario[1]
+				// 画像名
+				let imgName = scenario[2]
+				
+				if let img = UIImage(named: imgName),
+				   let sender = viewController.createSender(name: name)
 				{
-					// 送信者
-					let name = scenario[1]
-					// 画像名
-					let imgName = scenario[2]
-					
-					if let img = UIImage(named: imgName),
-					   let sender = viewController.createSender(name: name)
-					{
-						let msg = MockMessage(
-							image: img,
-							sender: sender,
-							messageId: UUID().uuidString,
-							date: Date()
-						)
-						viewController.addMessage(message: msg)
-					}
+					let msg = MockMessage(
+						image: img,
+						sender: sender,
+						messageId: UUID().uuidString,
+						date: Date()
+					)
+					viewController.addMessage(message: msg)
+
+					self.audioPlayer?.currentTime = 0
+					self.audioPlayer?.play()
 				}
 			}
 			else if (cmd == "wait")
 			{
-                
+                isWait = true
 			}
 		}
 		
 		self.currentMessageIdx += 1
 
-		if (self.currentMessageIdx <= self.scenario.count - 1)
+		if (self.currentMessageIdx <= self.scenario.count - 1 && !isWait)
 		{
 			self.timer = Timer.scheduledTimer(timeInterval: 5.0,
 											  target: self,
 											  selector: #selector(self.nextMessage(timer:)),
 											  userInfo: nil,
 											  repeats: false)
+		}
+		else
+		{
+			self.timer?.invalidate()
+			self.timer = nil
 		}
 	}
 	
@@ -127,6 +140,8 @@ class BaseScene: NSObject
 	
 	func stop(viewController:UIViewController?)
 	{
+		self.timer?.invalidate()
+		self.timer = nil
 	}
 	
 	func playNextSound()

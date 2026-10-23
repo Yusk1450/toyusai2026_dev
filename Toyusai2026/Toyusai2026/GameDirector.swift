@@ -21,6 +21,14 @@ protocol GameDirectorDelegate: AnyObject
 	func gameDirectorDidUpdate(gameDirector:GameDirector)
 }
 
+protocol StudentsCardPresenting: AnyObject
+{
+	func StudentsCard(name: String)
+}
+
+extension ChatViewController: StudentsCardPresenting {}
+extension StudentsCardViewController: StudentsCardPresenting {}
+
 class GameDirector: NSObject
 {
 	static let shared = GameDirector()
@@ -28,7 +36,7 @@ class GameDirector: NSObject
 	var delegate:GameDirectorDelegate?
 	
 	// サーバIP
-	let ip = "192.168.13.200"
+	let ip = "172.16.1.9"
 	// サーバURL
 	var url:String!
 
@@ -46,7 +54,18 @@ class GameDirector: NSObject
 	var currentScene:BaseScene?
 
 	// ギミッククリアフラグ
-	var gimmickFlags = [false, false, false, false, false, false, false, false]
+	var gimmickFlags = [false, false, false, false, false, false, false, false, false]
+
+	let studentNamesByCardID = [
+		"D2 D5 F7 06": "nishima",   // 二島
+		"82 ED D0 06": "hirazaki",  // 平﨑
+		"43 54 D1 06": "yamai",     // 山井
+		"5B F0 79 3B": "hashiguti", // 橋口
+		"26 12 3A 03": "kakegawa",  // 掛川
+		"3B 06 D4 06": "suzumura",  // 鈴村
+		"2D 88 D5 06": "nonomura",  // 野々村
+		"AC 13 F5 06": "sugihara",  // 杉原
+	]
 	
 	override init()
 	{
@@ -64,7 +83,8 @@ class GameDirector: NSObject
 			print(error.localizedDescription)
 		}
 		
-		self.url = "http://\(self.ip):8888/server"
+//		self.url = "http://\(self.ip):8888/server"
+		self.url = "http://\(self.ip):8888/WORKS/NBU/toyusai2026_dev/server"
 	}
 	
 	/* ----------------------------------------------------
@@ -130,12 +150,12 @@ class GameDirector: NSObject
 					{
 						let json = JSON(data)
 						
-//						print(json)
+						print(json)
 						
-//						for i in stride(from: 0, to: self.gimmickFlags.count, by: 1)
-//						{
-//							self.gimmickFlags[i] = json[i].boolValue
-//						}
+						for i in stride(from: 0, to: self.gimmickFlags.count, by: 1)
+						{
+							self.gimmickFlags[i] = json[i].boolValue
+						}
 					}
 
 			}
@@ -160,10 +180,8 @@ class GameDirector: NSObject
 	/* ----------------------------------------------------
 	 * シーンの切り替え
 	 ----------------------------------------------------*/
-	func changeScene(scene:BaseScene, viewController:UIViewController)
+	func changeScene(scene:BaseScene)
 	{
-		self.currentViewController = viewController
-		
 		self.currentScene?.stop(viewController: self.currentViewController)
 		self.currentScene?.delegate = nil
 		
@@ -194,7 +212,7 @@ extension GameDirector: OSCUdpServerDelegate
 	{
 		if let message = packet as? OSCMessage
 		{
-			print(message.addressPattern.fullPath)
+//			print(message.addressPattern.fullPath)
 			
 			// NFC
 			if (message.addressPattern.fullPath == OSCAddress.NFCDevice.rawValue)
@@ -208,13 +226,12 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					if (uuid == "photo")
 					{
-						
+						self.changeScene(scene: PhotoScene())
 					}
-
 					// --------------------------------------------------
 					// VRゴーグル
 					// --------------------------------------------------
-					if (uuid == "vr")
+					else if (uuid == "vr")
 					{
 						
 					}
@@ -223,104 +240,10 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					// 学生証
 					// --------------------------------------------------
-					if let currentViewController = self.currentViewController as? ChatViewController
+					if let name = self.studentNamesByCardID[uuid],
+					   let cardViewController = self.currentViewController as? StudentsCardPresenting
 					{
-						// 二島
-						if (uuid == "D2 D5 F7 06")
-						{
-							currentViewController.StudentsCard(name: "nishima")
-							
-							if let scene = self.currentScene as? StudentCardScene
-							{
-								// シナリオを再開する
-								scene.startScenario()
-							}
-						}
-						// 平﨑
-						else if (uuid == "82 ED D0 06")
-						{
-							currentViewController.StudentsCard(name: "hirazaki")
-						}
-						// 山井
-						else if (uuid == "43 54 D1 06")
-						{
-							currentViewController.StudentsCard(name: "yamai")
-						}
-						// 橋口
-						else if (uuid == "5B F0 79 3B")
-						{
-							currentViewController.StudentsCard(name: "hashiguti")
-						}
-						// 掛川
-						else if (uuid == "26 12 3A 03")
-						{
-							currentViewController.StudentsCard(name: "kakegawa")
-						}
-						// 鈴村
-						else if (uuid == "3B 06 D4 06")
-						{
-							currentViewController.StudentsCard(name: "suzumura")
-						}
-						// 野々村
-						else if (uuid == "2D 88 D5 06")
-						{
-							currentViewController.StudentsCard(name: "nonomura")
-						}
-						// 杉原
-						else if (uuid == "AC 13 F5 06")
-						{
-							currentViewController.StudentsCard(name: "sugihara")
-						}
-					}
-					
-					if let currentViewController = self.currentViewController as? StudentsCardViewController
-					{
-						// 二島
-						if (uuid == "D2 D5 F7 06")
-						{
-							currentViewController.StudentsCard(name: "nishima")
-
-							if let scene = self.currentScene as? StudentCardScene
-							{
-								// シナリオを再開する
-								scene.startScenario()
-							}
-						}
-						// 平﨑
-						else if (uuid == "82 ED D0 06")
-						{
-							currentViewController.StudentsCard(name: "hirazaki")
-						}
-						// 山井
-						else if (uuid == "43 54 D1 06")
-						{
-							currentViewController.StudentsCard(name: "yamai")
-						}
-						// 橋口
-						else if (uuid == "5B F0 79 3B")
-						{
-							currentViewController.StudentsCard(name: "hashiguti")
-						}
-						// 掛川
-						else if (uuid == "26 12 3A 03")
-						{
-							currentViewController.StudentsCard(name: "kakegawa")
-						}
-						// 鈴村
-						else if (uuid == "3B 06 D4 06")
-						{
-							currentViewController.StudentsCard(name: "suzumura")
-						}
-						// 野々村
-						else if (uuid == "2D 88 D5 06")
-						{
-							currentViewController.StudentsCard(name: "nonomura")
-						}
-						// 杉原
-						else if (uuid == "AC 13 F5 06")
-						{
-							currentViewController.StudentsCard(name: "sugihara")
-						}
+						cardViewController.StudentsCard(name: name)
 					}
 				}
 			}

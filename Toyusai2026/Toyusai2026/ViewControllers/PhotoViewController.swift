@@ -9,7 +9,8 @@ import UIKit
 import SceneKit
 import ARKit
 
-class photoViewController: BaseViewController,ARSCNViewDelegate {
+class PhotoViewController: BaseViewController,ARSCNViewDelegate
+{
 
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
@@ -17,36 +18,35 @@ class photoViewController: BaseViewController,ARSCNViewDelegate {
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var rewindBtn: UIButton!
     
-    override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            // Set the view's delegate
-            sceneView.delegate = self
-        }
+    override func viewDidLoad()
+	{
+		super.viewDidLoad()
+		
+		sceneView.delegate = self
+	}
         
-        override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            
-            // Create a session configuration
-            let configuration = ARImageTrackingConfiguration()
-            
-            // "ARResources" グループから参照画像を読み込む
-            if let trackedImages = ARReferenceImage.referenceImages(inGroupNamed: "ARResources", bundle: Bundle.main) {
-                configuration.trackingImages = trackedImages
-                configuration.maximumNumberOfTrackedImages = 1
-            }
-            
-            // Run the view's session
-            sceneView.session.run(configuration)
-        }
+	override func viewWillAppear(_ animated: Bool)
+	{
+		super.viewWillAppear(animated)
+		
+		// Create a session configuration
+		let configuration = ARImageTrackingConfiguration()
+		
+		// "ARResources" グループから参照画像を読み込む
+		if let trackedImages = ARReferenceImage.referenceImages(inGroupNamed: "ARResources", bundle: Bundle.main) {
+			configuration.trackingImages = trackedImages
+			configuration.maximumNumberOfTrackedImages = 1
+		}
+		
+		sceneView.session.run(configuration)
+	}
         
-        override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            
-            // Pause the view's session
-            sceneView.session.pause()
-        }
-    
+	override func viewWillDisappear(_ animated: Bool)
+	{
+		super.viewWillDisappear(animated)
+		
+		sceneView.session.pause()
+	}
     
     @IBAction func backBtn(_ sender: Any)
     {
@@ -81,4 +81,4 @@ class photoViewController: BaseViewController,ARSCNViewDelegate {
         // finally add the plane node (which contains the video node) to the added node
         node.addChildNode(planeNode)
     }
-    }
+}

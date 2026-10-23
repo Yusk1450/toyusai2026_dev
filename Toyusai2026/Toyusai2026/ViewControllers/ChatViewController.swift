@@ -14,8 +14,8 @@ import SwiftyJSON
 class ChatViewController: MessagesViewController
 {
     @IBOutlet weak var headerView: UIView!
-	//メッセージまわり
-    var messageList: [MockMessage] = []
+
+	var messageList: [MockMessage] = []
     lazy var formatter: DateFormatter =
     {
         let formatter = DateFormatter()
@@ -47,6 +47,8 @@ class ChatViewController: MessagesViewController
 		self.messageInputBar.isHidden = true
 		
 		self.view.bringSubviewToFront(self.headerView)
+		
+		GameDirector.shared.changeScene(scene: StudentCardScene())
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -54,9 +56,7 @@ class ChatViewController: MessagesViewController
         super.viewDidAppear(animated)
 		
 		let director = GameDirector.shared
-		director.changeScene(scene: StudentCardScene(), viewController: self)
-        
-		
+		director.currentViewController = self
     }
     
     func StudentsCard(name:String)
@@ -64,6 +64,11 @@ class ChatViewController: MessagesViewController
         self.studentName = name
         self.performSegue(withIdentifier: "toStudentsCard", sender: nil)
     }
+	
+	func showPhotoPopViewController()
+	{
+		self.performSegue(withIdentifier: "toPhotoPop", sender: nil)
+	}
 	
 	private func alignSenderNameWithMessageText()
 	{
@@ -123,7 +128,20 @@ class ChatViewController: MessagesViewController
 		{
 			sender = Sender(senderId: "3", displayName: name)
 		}
-
+		else if (name == "掛川")
+		{
+			sender = Sender(senderId: "4", displayName: name)
+		}
+		else if (name == "橋口")
+		{
+			sender = Sender(senderId: "5", displayName: name)
+		}
+		else if (name == "野々村")
+		{
+			sender = Sender(senderId: "6", displayName: name)
+		}
+		
+		
 		return sender
 	}
     

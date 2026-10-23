@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xdr-Tl-gqI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xdr-Tl-gqI">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -211,8 +211,8 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="カメラを起動しますか？">
                                                         <attributes>
-                                                            <font key="NSFont" size="24" name="ShipporiMincho-Bold"/>
-                                                            <font key="NSOriginalFont" size="24" name="ShipporiMincho-Bold"/>
+                                                            <font key="NSFont" metaFont="system" size="24"/>
+                                                            <font key="NSOriginalFont" metaFont="system" size="24"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -264,7 +264,7 @@
         <!--Photo View Controller-->
         <scene sceneID="Sbw-lc-Dnf">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="Rqv-iv-YqZ" customClass="photoViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="Rqv-iv-YqZ" customClass="PhotoViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BDv-1D-wAA">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -371,8 +371,8 @@
                                                 <attributedString key="attributedText">
                                                     <fragment content="カメラを起動しますか？">
                                                         <attributes>
-                                                            <font key="NSFont" size="24" name="ShipporiMincho-Bold"/>
-                                                            <font key="NSOriginalFont" size="24" name="ShipporiMincho-Bold"/>
+                                                            <font key="NSFont" metaFont="system" size="24"/>
+                                                            <font key="NSOriginalFont" metaFont="system" size="24"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
@@ -442,7 +442,7 @@
                                             <fragment content="データが見つかりません">
                                                 <attributes>
                                                     <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="24" name="ShipporiMincho-Bold"/>
+                                                    <font key="NSFont" metaFont="system" size="24"/>
                                                     <font key="NSOriginalFont" metaFont="system" size="17"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
