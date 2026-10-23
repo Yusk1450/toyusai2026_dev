@@ -36,7 +36,7 @@ class GameDirector: NSObject
 	var delegate:GameDirectorDelegate?
 	
 	// サーバIP
-	let ip = "172.16.1.9"
+	let ip = "192.168.10.139"
 	// サーバURL
 	var url:String!
 

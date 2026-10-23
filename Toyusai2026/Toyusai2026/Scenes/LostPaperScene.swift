@@ -11,11 +11,10 @@ class LostPaperScene: BaseScene
 {
     override func start(viewController:UIViewController?)
     {
+		super.start(viewController: viewController)
+		
         self.scenario = [
-            // msg -> 送信者名, 内容
-            ["wait"],
             ["msg", "平崎", "見つけてくれてありがとうございます。いったい誰が移動したんだろう…"],
-            
             ["msg", "伊志郷", "その論文は私が捨てました。もうその研究は中止されています。\nこの件については、これ以上調べる必要はありません。"],
         ]
         
@@ -25,13 +24,9 @@ class LostPaperScene: BaseScene
     
     override func update(viewController:UIViewController?)
     {
-        
+		super.update(viewController: viewController)
         
         
     }
     
-    override func stop(viewController:UIViewController?)
-    {
-        self.timer?.invalidate()
-    }
 }

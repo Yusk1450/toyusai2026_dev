@@ -48,7 +48,9 @@ class ChatViewController: MessagesViewController
 		
 		self.view.bringSubviewToFront(self.headerView)
 		
-		GameDirector.shared.changeScene(scene: StudentCardScene())
+		let director = GameDirector.shared
+		director.startGame()
+		director.changeScene(scene: StudentCardScene())
     }
     
     override func viewDidAppear(_ animated: Bool)

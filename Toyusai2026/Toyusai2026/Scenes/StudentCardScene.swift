@@ -17,7 +17,7 @@ class StudentCardScene: BaseScene
 		
 		self.scenario = [
 			// msg -> 送信者名, 内容
-			["msg", "伊志郷", "今年度の伊志郷ゼミの在籍者リストを共有します。\n画像をタップして、自分の名前があるか確認してください。"],
+			["msg", "伊志郷", "今年度の伊志郷ゼミの在籍者リストを共有します。\n自分の名前があるか確認してください。"],
 			// 在籍者リスト
 			// img -> 送信者名, 画像名
 			["img", "伊志郷", "list"],
@@ -39,7 +39,7 @@ class StudentCardScene: BaseScene
 		let director = GameDirector.shared
 		
 		// セリフが最期まで言ったら…
-		if (self.currentMessageIdx - 1 >= self.scenario.count)
+		if (self.currentMessageIdx >= self.scenario.count)
 		{
 			// クリアフラグ
 			director.sendFlagToServer(flagIndex: 0)
