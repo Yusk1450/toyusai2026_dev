@@ -16,10 +16,9 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var backBtn: UIButton!
-    @IBOutlet weak var nextBtn: UIButton!
-    @IBOutlet weak var rewindBtn: UIButton!
 
-    var AVPlayer: AVPlayer?
+    var player: AVPlayer?
+    var stepTimer:Timer?
     
     override func viewDidLoad()
 	{
@@ -56,13 +55,72 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
-	// MARK: - ARSCNViewDelegate
+    @IBAction func nextStepDown(_ sender: Any) {
+        self.stepTimer?.invalidate()
+        self.stepTimer = Timer.scheduledTimer(timeInterval: 0.05,
+                                              target: self,
+                                              selector: #selector(self.holdNextStep),
+                                              userInfo: nil,
+                                              repeats: true)
+    }
+    
+    @IBAction func nextStepUp(_ sender: Any) {
+        self.stepTimer?.invalidate()
+        self.stepTimer = nil
+    }
+    
+    @objc func holdNextStep()
+    {
+        self.step(forward: true)
+    }
+    
+    
+    @IBAction func backStepDown(_ sender: Any) {
+        self.stepTimer?.invalidate()
+        self.stepTimer = Timer.scheduledTimer(timeInterval: 0.05,
+                                              target: self,
+                                              selector: #selector(self.holdBackStep),
+                                              userInfo: nil,
+                                              repeats: true)
+    }
+    
+    @IBAction func backStepUp(_ sender: Any) {
+        self.stepTimer?.invalidate()
+        self.stepTimer = nil
+    }
+    
+    @objc func holdBackStep()
+    {
+        self.step(forward: false)
+    }
+    
+    func step(forward: Bool) {
+        if let player = self.player {
+            self.player?.pause()
+
+            let fps: Int32 = 60
+            let frame = CMTime(value: 1, timescale: fps)
+            let currentTime = player.currentTime()
+            let step: CMTime
+            if (forward) {
+                step = CMTimeAdd(currentTime, frame)
+            } else {
+                step = CMTimeSubtract(currentTime, frame)
+            }
+
+            player.seek(to: step, toleranceBefore: .zero, toleranceAfter: .zero)
+        }
+    }
+    // MARK: - ARSCNViewDelegate
         
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor)
 	{
         guard let imageAnchor = anchor as? ARImageAnchor else {return}
-        let videoNode = SKVideoNode(fileNamed: "photoAR.mp4")
+        guard let url = Bundle.main.url(forResource: "photoAR", withExtension: "mp4") else {return}
+        self.player = AVPlayer(url: url)
+        let videoNode = SKVideoNode(avPlayer: self.player!)
         videoNode.play()
+        self.player?.pause()
         let videoScene = SKScene(size: CGSize(width: 1920, height: 1080))
         videoNode.position = CGPoint(x: videoScene.size.width / 2, y: videoScene.size.height / 2)
         videoNode.yScale = -1.0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xdr-Tl-gqI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VXQ-Q1-b3e">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
@@ -286,14 +286,26 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxO-Ix-70g">
                                 <rect key="frame" x="620" y="708" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="nextBtn"/>
+                                <connections>
+                                    <action selector="nextStepDown:" destination="Rqv-iv-YqZ" eventType="touchDown" id="48j-UD-V5R"/>
+                                    <action selector="nextStepUp:" destination="Rqv-iv-YqZ" eventType="touchUpOutside" id="7NJ-FM-LEO"/>
+                                    <action selector="nextStepUp:" destination="Rqv-iv-YqZ" eventType="touchUpInside" id="fVh-pC-VjJ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdk-sH-fpU">
                                 <rect key="frame" x="390" y="708" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="rewindBtn"/>
+                                <connections>
+                                    <action selector="backStepDown:" destination="Rqv-iv-YqZ" eventType="touchDown" id="sQi-Dh-u71"/>
+                                    <action selector="backStepUp:" destination="Rqv-iv-YqZ" eventType="touchUpInside" id="4gR-b4-LcY"/>
+                                    <action selector="backStepUp:" destination="Rqv-iv-YqZ" eventType="touchDragOutside" id="w9H-5u-nH1"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Q-lF-8Ky">
                                 <rect key="frame" x="32" y="32" width="192" height="96"/>
@@ -315,8 +327,6 @@
                     <navigationItem key="navigationItem" id="TiS-CD-r3w"/>
                     <connections>
                         <outlet property="backBtn" destination="vSd-2w-god" id="6Io-Q7-BDl"/>
-                        <outlet property="nextBtn" destination="vxO-Ix-70g" id="W7H-lt-zn7"/>
-                        <outlet property="rewindBtn" destination="wdk-sH-fpU" id="fmg-56-w7z"/>
                         <outlet property="sceneView" destination="5yP-qs-SzE" id="3jV-y5-GyI"/>
                         <outlet property="timeLabel" destination="75Q-lF-8Ky" id="8Tf-0G-3BQ"/>
                     </connections>
