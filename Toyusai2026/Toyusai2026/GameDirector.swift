@@ -260,7 +260,16 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					else if (uuid == "2b50d206")
 					{
-						self.sendFlagToServer(flagIndex: 10)
+                        if (!self.gimmickFlags[3])
+                        {
+                            self.sendFlagToServer(flagIndex: 10)
+                        }
+                        else
+                        {
+							guard let chatVC = self.currentViewController as? ChatViewController else { return }
+                            chatVC.performSegue(withIdentifier: "toPaperPop", sender: nil)
+                        }
+//						self.sendFlagToServer(flagIndex: 10)
 //						self.changeScene(scene: VRScene())
 					}
 
