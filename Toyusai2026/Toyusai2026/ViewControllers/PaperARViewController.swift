@@ -14,12 +14,15 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
 
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var sceneView: ARSCNView!
+    
+    var isAR = false
 
 	override func viewDidLoad()
 	{
 		super.viewDidLoad()
 		
 		sceneView.delegate = self
+        self.isAR = false
 	}
         
 	override func viewWillAppear(_ animated: Bool) {
@@ -47,11 +50,14 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
     
     @IBAction func backBtn(_ sender: Any)
     {
-        self.dismiss(animated: true, completion: nil)
-		
-		self.presentingViewController?.dismiss(animated: true) {
-			let director = GameDirector.shared
-			director.currentScene?.startScenario()
+        if (!isAR)
+        {
+            self.dismiss(animated: true, completion: nil)
+        }else{
+            self.presentingViewController?.dismiss(animated: true) {
+                let director = GameDirector.shared
+                director.currentScene?.startScenario()
+            }
 		}
     }
         
@@ -64,7 +70,7 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
 		
 		// どの画像が読み込まれたか判定（必要に応じて "test" の場合のみにするなど分岐可能）
 		if imageAnchor.referenceImage.name == "paper" {
-			
+            self.isAR = true
 			// 1. 検出された実際のマーカーと同じ幅・高さを持つ平面（SCNPlane）を作成
 			let plane = SCNPlane(
 				width: imageAnchor.referenceImage.physicalSize.width,
