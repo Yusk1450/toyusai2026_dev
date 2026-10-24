@@ -35,7 +35,7 @@ class GameDirector: NSObject
 	var delegate:GameDirectorDelegate?
 	
 	// サーバIP
-	let ip = "172.16.0.112"
+	let ip = "192.168.13.200"
 	// サーバURL
 	var url:String!
 
@@ -83,8 +83,8 @@ class GameDirector: NSObject
 			print(error.localizedDescription)
 		}
 		
-//		self.url = "http://\(self.ip):8888/server"
-		self.url = "http://\(self.ip):8888/WORKS/NBU/toyusai2026_dev/server"
+		self.url = "http://\(self.ip):8888/server"
+//		self.url = "http://\(self.ip):8888/WORKS/NBU/toyusai2026_dev/server"
 	}
 	
 	/* ----------------------------------------------------
