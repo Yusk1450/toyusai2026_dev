@@ -28,7 +28,6 @@ class PhotoPopViewController: BaseViewController
         self.backBtn.isHidden = true
         
         let director = GameDirector.shared
-        print (director.gimmickFlags)
         if (director.gimmickFlags[1] == true)
         {
             self.backBtn.isHidden = false
