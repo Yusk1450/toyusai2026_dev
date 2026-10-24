@@ -48,6 +48,11 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
     @IBAction func backBtn(_ sender: Any)
     {
         self.dismiss(animated: true, completion: nil)
+		
+		self.presentingViewController?.dismiss(animated: true) {
+			let director = GameDirector.shared
+			director.currentScene?.startScenario()
+		}
     }
         
 	// MARK: - ARSCNViewDelegate
