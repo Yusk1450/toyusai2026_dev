@@ -13,15 +13,6 @@ class PhotoPopViewController: BaseViewController
     @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var toArBtn: UIButton!
     
-    @IBAction func toArBtn(_ sender: Any)
-    {
-        performSegue(withIdentifier: "toPhotoAR", sender: nil)
-    }
-    
-    @IBAction func toback(_ sender: Any) {
-        self.dismiss(animated: false)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -34,4 +25,14 @@ class PhotoPopViewController: BaseViewController
         }
         
     }
+    
+    @IBAction func toArBtn(_ sender: Any)
+    {
+        performSegue(withIdentifier: "toPhotoAR", sender: nil)
+    }
+    
+    @IBAction func toback(_ sender: Any) {
+        self.dismiss(animated: false)
+    }
+
 }

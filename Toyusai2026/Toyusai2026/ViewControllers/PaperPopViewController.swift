@@ -9,17 +9,32 @@ import UIKit
 
 class PaperPopViewController: BaseViewController {
 
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var toArBtn: UIButton!
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.backBtn.isHidden = true
+        
+        let director = GameDirector.shared
+        if (director.gimmickFlags[3] == true)
+        {
+            self.backBtn.isHidden = false
+        }
+        
     }
     
     @IBAction func toArBtn(_ sender: Any)
     {
         performSegue(withIdentifier: "toPaperAR", sender: nil)
+    }
+    @IBAction func toBack(_ sender: Any) {
+        self.dismiss(animated: false)
     }
     
 }

@@ -241,7 +241,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHO-l3-h8P">
-                                        <rect key="frame" x="466" y="32" width="40" height="40"/>
+                                        <rect key="frame" x="466" y="32" width="41" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="backBtn">
@@ -370,6 +370,18 @@
                                 <rect key="frame" x="540" y="72" width="540" height="738"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghj-9X-Obz">
+                                        <rect key="frame" x="466" y="32" width="41" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="backBtn">
+                                            <attributedString key="attributedTitle"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="toBack:" destination="67T-8h-ofa" eventType="touchUpInside" id="CTs-uC-BdA"/>
+                                            <action selector="toback:" destination="VXQ-Q1-b3e" eventType="touchUpInside" id="KOn-ur-Iiv"/>
+                                        </connections>
+                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HZy-QQ-Mwj">
                                         <rect key="frame" x="2" y="260" width="538" height="143"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -420,6 +432,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gkl-38-cXh"/>
                     <connections>
+                        <outlet property="backBtn" destination="ghj-9X-Obz" id="ugf-Ge-DGd"/>
                         <outlet property="toArBtn" destination="1hn-dp-7vh" id="amh-ST-oSt"/>
                         <segue destination="uVm-U0-5wF" kind="show" identifier="toPaperAR" animates="NO" id="xhj-ni-z8k"/>
                     </connections>
