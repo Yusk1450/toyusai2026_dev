@@ -252,14 +252,16 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					if (uuid == "0420feaa")
 					{
-						self.changeScene(scene: PhotoScene())
+						self.sendFlagToServer(flagIndex: 9)
+//						self.changeScene(scene: PhotoScene())
 					}
 					// --------------------------------------------------
 					// VRゴーグル
 					// --------------------------------------------------
 					else if (uuid == "041effaa")
 					{
-						self.changeScene(scene: VRScene())
+						self.sendFlagToServer(flagIndex: 10)
+//						self.changeScene(scene: VRScene())
 					}
 
 					

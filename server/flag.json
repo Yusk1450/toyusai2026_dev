@@ -43,5 +43,15 @@
         "comment": "トゥルーエンド",
         "name": "true_end",
         "clear": false
+    },
+    {
+        "comment": "集合写真スタート",
+        "name": "photo_start",
+        "clear": false
+    },
+    {
+        "comment": "VRゴーグルスタート",
+        "name": "vr_start",
+        "clear": false
     }
 ]

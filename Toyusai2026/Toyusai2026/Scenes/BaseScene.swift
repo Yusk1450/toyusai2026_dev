@@ -172,6 +172,16 @@ class BaseScene: NSObject
 			director.changeScene(scene: ShadowScene())
 		}
 		
+		if (director.gimmickFlags[9] && !director.gimmickFlagsLast[9])
+		{
+			director.changeScene(scene: PhotoScene())
+		}
+
+		if (director.gimmickFlags[10] && !director.gimmickFlagsLast[10])
+		{
+			director.changeScene(scene: VRScene())
+		}
+		
 		// バグ修正シーン
 		if (director.gimmickFlags[5] && !director.gimmickFlagsLast[5])
 		{
