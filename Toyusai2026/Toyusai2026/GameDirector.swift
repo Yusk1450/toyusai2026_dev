@@ -35,7 +35,7 @@ class GameDirector: NSObject
 	var delegate:GameDirectorDelegate?
 	
 	// サーバIP
-	let ip = "192.168.10.139"
+	let ip = "172.16.50.150"
 	// サーバURL
 	var url:String!
 
@@ -44,7 +44,7 @@ class GameDirector: NSObject
 	private let oscServer:OSCUdpServer!
 	
 	// 残り時間
-	var remainGameTime = 600
+	var remainGameTime = 999
 	var gameTimer:Timer?
 
 	var currentViewController:UIViewController?
@@ -110,17 +110,39 @@ class GameDirector: NSObject
 		// 時間切れ
 		if (self.remainGameTime < 0)
 		{
-			self.gameTimer?.invalidate()
+			timer.invalidate()
 			
-//			if let viewController = self.currentViewController
-//			{
-//				let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//				if let timeoverViewController = storyboard.instantiateViewController(withIdentifier: "TimeoverEndViewController") as? TimeoverEndViewController
-//				{
-//					viewController.present(timeoverViewController, animated: true, completion: nil)
-//				}
-//			}
-			
+			self.currentScene?.stop(viewController: self.currentViewController)
+
+			var controller = self.currentViewController
+			var chat = controller as? ChatViewController
+			while let presenter = controller?.presentingViewController
+			{
+				if let found = presenter as? ChatViewController
+				{
+					chat = found
+					break
+				}
+				controller = presenter
+			}
+
+			if let chat
+			{
+				self.currentViewController = chat
+				if chat.presentedViewController != nil
+				{
+					chat.dismiss(animated: false) {
+						DispatchQueue.main.async {
+							chat.performSegue(withIdentifier: "toBadEnd", sender: nil)
+						}
+					}
+				}
+				else
+				{
+					chat.performSegue(withIdentifier: "toBadEnd", sender: nil)
+				}
+			}
+
 			return
 		}
 		

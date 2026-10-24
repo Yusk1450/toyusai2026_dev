@@ -170,7 +170,6 @@ class BaseScene: NSObject
 			
 			director.changeScene(scene: ShadowScene())
 		}
-		
 	}
 	
 	func stop(viewController:UIViewController?)
