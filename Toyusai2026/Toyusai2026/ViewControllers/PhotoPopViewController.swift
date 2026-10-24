@@ -10,6 +10,7 @@ import UIKit
 class PhotoPopViewController: BaseViewController
 {
 
+    @IBOutlet weak var backBtn: UIButton!
     @IBOutlet weak var toArBtn: UIButton!
     
     @IBAction func toArBtn(_ sender: Any)
@@ -17,4 +18,21 @@ class PhotoPopViewController: BaseViewController
         performSegue(withIdentifier: "toPhotoAR", sender: nil)
     }
     
+    @IBAction func toback(_ sender: Any) {
+        self.dismiss(animated: false)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.backBtn.isHidden = true
+        
+        let director = GameDirector.shared
+        print (director.gimmickFlags)
+        if (director.gimmickFlags[1] == true)
+        {
+            self.backBtn.isHidden = false
+        }
+        
+    }
 }
