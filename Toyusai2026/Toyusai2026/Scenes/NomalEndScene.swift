@@ -14,7 +14,10 @@ class NomalEndScene: BaseScene
 		super.start(viewController: viewController)
 
 		self.scenario = [
-			
+            ["img", "伊志郷", "screenshot"],
+            ["msg", "伊志郷", "このバグを直したのは誰ですか！！"],
+            ["msg", "平﨑", "この画像、\n二島さんが研究で作っていたもの…？\nそういえば先生、二島さんと一緒に研究していたような…？"],
+            ["msg", "山井", "そういえば二島さんがいなくなった日、\n先生って何していました…？"],
 		]
 		
 		self.startScenario()
