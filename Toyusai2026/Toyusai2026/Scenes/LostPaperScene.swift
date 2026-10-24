@@ -29,6 +29,13 @@ class LostPaperScene: BaseScene
     {
 		super.update(viewController: viewController)
         
+        // セリフが最期まで言ったら…
+        if (self.currentMessageIdx >= self.scenario.count)
+        {
+            // クリアフラグ
+            director.sendFlagToServer(flagIndex: 4)
+        }
+        
         
     }
     
