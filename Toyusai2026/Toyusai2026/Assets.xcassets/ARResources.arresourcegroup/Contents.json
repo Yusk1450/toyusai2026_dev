@@ -5,7 +5,12 @@
   },
   "resources" : [
     {
-      "filename" : "paper.arreferenceimage",
+      "filename" : "paper.arreferenceimage"
+    },
+    {
+      "filename" : "photo_1.arreferenceimage"
+    },
+    {
       "filename" : "photo.arreferenceimage"
     }
   ]
