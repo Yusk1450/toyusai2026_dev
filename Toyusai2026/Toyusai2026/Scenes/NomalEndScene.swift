@@ -11,14 +11,19 @@ class NomalEndScene: BaseScene
 {
     override func start(viewController:UIViewController?)
     {
-    }
+		super.start(viewController: viewController)
+
+		self.scenario = [
+			
+		]
+		
+		self.startScenario()
+		self.delegate?.gameSceneDidStart(scene: self)
+	}
     
     override func update(viewController:UIViewController?)
     {
-    }
-    
-    override func stop(viewController:UIViewController?)
-    {
-        self.timer?.invalidate()
+		super.update(viewController: viewController)
+		
     }
 }
