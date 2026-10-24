@@ -172,11 +172,25 @@ class BaseScene: NSObject
 			director.changeScene(scene: ShadowScene())
 		}
 		
-		if (director.gimmickFlags[5] && !director.isEnding)
+		// バグ修正シーン
+		if (director.gimmickFlags[5] && !director.gimmickFlagsLast[5])
 		{
-			director.isEnding = true
 			director.changeScene(scene: BugScene())
 		}
+		
+		// ノーマルエンド
+		if (director.gimmickFlags[6] && !director.gimmickFlagsLast[6])
+		{
+			director.changeScene(scene: NomalEndScene())
+		}
+		
+		// トゥルーエンド
+		if (director.gimmickFlags[8] && !director.gimmickFlagsLast[8])
+		{
+			director.changeScene(scene: TrueEndScene())
+		}
+		
+		
 	}
 	
 	func stop(viewController:UIViewController?)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xdr-Tl-gqI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bEc-UP-cne">
     <device id="ipad10_2" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073"/>
@@ -149,6 +149,7 @@
                         <segue destination="VXQ-Q1-b3e" kind="show" identifier="toPhotoPop" animates="NO" id="fmr-of-r3L"/>
                         <segue destination="67T-8h-ofa" kind="show" identifier="toPaperPop" animates="NO" id="AmQ-JF-Mma"/>
                         <segue destination="QVw-jn-yMI" kind="show" identifier="toBadEnd" animates="NO" id="QKV-Bc-gAz"/>
+                        <segue destination="W9e-Eo-krl" kind="presentation" identifier="toTrueEnd" id="1Zf-ee-cpz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -324,7 +325,7 @@
         <!--Bad End View Controller-->
         <scene sceneID="5Te-On-rAG">
             <objects>
-                <viewController modalPresentationStyle="overFullScreen" id="QVw-jn-yMI" customClass="BadEndViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="QVw-jn-yMI" customClass="BadEndViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPN-bM-FcK">
                         <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -344,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPw-Yq-vUu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-502" y="846"/>
+            <point key="canvasLocation" x="2142" y="846"/>
         </scene>
         <!--Paper Pop View Controller-->
         <scene sceneID="x83-10-Zwu">
@@ -416,6 +417,59 @@
             </objects>
             <point key="canvasLocation" x="847" y="846"/>
         </scene>
+        <!--True End1 View Controller-->
+        <scene sceneID="L4B-1W-2Vr">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="W9e-Eo-krl" customClass="TrueEnd1ViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3cZ-9h-nWI">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TrueEnd" translatesAutoresizingMaskIntoConstraints="NO" id="atA-Lb-Jzi">
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KQI-y9-RCC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <segue destination="bEc-UP-cne" kind="presentation" identifier="toStaffRoll" id="hvE-OR-A0c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xyu-Yq-h5O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485" y="99"/>
+        </scene>
+        <!--True End2 View Controller-->
+        <scene sceneID="lAf-Jh-BcJ">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="bEc-UP-cne" customClass="TrueEnd2ViewController" customModule="Toyusai2026" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ObC-FH-yr3">
+                        <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TrueEndCredit" translatesAutoresizingMaskIntoConstraints="NO" id="eqa-Br-Edg">
+                                <rect key="frame" x="169" y="102" width="743" height="1374"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="TrueEndFlame" translatesAutoresizingMaskIntoConstraints="NO" id="rZR-g4-1g4">
+                                <rect key="frame" x="0.0" y="0.0" width="1080" height="810"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ho9-uf-dsx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="creditImageView" destination="eqa-Br-Edg" id="hIf-yZ-geD"/>
+                        <segue destination="QVw-jn-yMI" kind="presentation" identifier="toEnd" id="G6f-kN-5EC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aeB-1p-nzd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2142" y="99"/>
+        </scene>
         <!--Students Card View Controller-->
         <scene sceneID="NKH-q8-sr2">
             <objects>
@@ -481,8 +535,14 @@
             <point key="canvasLocation" x="188.88888888888889" y="-614.81481481481478"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="G6f-kN-5EC"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="StartBtn" width="263" height="93"/>
+        <image name="TrueEnd" width="1080" height="810"/>
+        <image name="TrueEndCredit" width="743" height="1374"/>
+        <image name="TrueEndFlame" width="1080" height="810"/>
         <image name="backBtn" width="40" height="40"/>
         <image name="badEnd" width="1080" height="810"/>
         <image name="hashiguti" width="400" height="247.5"/>

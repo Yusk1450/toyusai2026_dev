@@ -54,8 +54,8 @@ class GameDirector: NSObject
 
 	// ギミッククリアフラグ
 	var gimmickFlags = [false, false, false, false, false, false, false, false, false]
-	var isEnding = false
-
+	var gimmickFlagsLast = [false, false, false, false, false, false, false, false, false]
+	
 	let studentNamesByCardID = [
 		"D2 D5 F7 06": "nishima",   // 二島
 		"82 ED D0 06": "hirazaki",  // 平﨑
@@ -154,6 +154,8 @@ class GameDirector: NSObject
 		
 		self.currentScene?.update(viewController: self.currentViewController)
 		self.delegate?.gameDirectorDidUpdate(gameDirector: self)
+		
+		self.gimmickFlagsLast = self.gimmickFlags
 	}
 
 	func updateServerFlag()
