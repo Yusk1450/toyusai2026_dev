@@ -232,6 +232,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Toyusai2026/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラを利用するため";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "oscのため";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を利用するため";
 				INFOPLIST_KEY_NSLocationUsageDescription = "位置情報の利用のため";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を利用するため";
@@ -274,6 +275,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Toyusai2026/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラを利用するため";
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "oscのため";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "位置情報を利用するため";
 				INFOPLIST_KEY_NSLocationUsageDescription = "位置情報の利用のため";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "位置情報を利用するため";
