@@ -57,14 +57,14 @@ class GameDirector: NSObject
 	var gimmickFlagsLast = [false, false, false, false, false, false, false, false, false]
 	
 	let studentNamesByCardID = [
-		"D2 D5 F7 06": "nishima",   // 二島
-		"82 ED D0 06": "hirazaki",  // 平﨑
-		"43 54 D1 06": "yamai",     // 山井
-		"5B F0 79 3B": "hashiguti", // 橋口
-		"26 12 3A 03": "kakegawa",  // 掛川
-		"3B 06 D4 06": "suzumura",  // 鈴村
-		"2D 88 D5 06": "nonomura",  // 野々村
-		"AC 13 F5 06": "sugihara",  // 杉原
+		"d2d5f706": "nishima",   // 二島
+		"82edd006": "hirazaki",  // 平﨑
+		"4354d106": "yamai",     // 山井
+		"5bf0793b": "hashiguti", // 橋口
+		"26123a03": "kakegawa",  // 掛川
+		"3b06d406": "suzumura",  // 鈴村
+		"2d88d506": "nonomura",  // 野々村
+		"ac13f506": "sugihara",  // 杉原
 	]
 	
 	override init()
