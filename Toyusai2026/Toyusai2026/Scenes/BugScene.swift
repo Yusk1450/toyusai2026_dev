@@ -11,6 +11,8 @@ class BugScene: BaseScene
 {
     override func start(viewController:UIViewController?)
     {
+		super.start(viewController: viewController)
+		
         self.scenario = [
             // msg -> 送信者名, 内容
             ["msg", "二島", "私が先生と完成させたプログラム、バグがあったみたい\nそれで私は意識をAIに取り込まれた\nお願い\n　　　　　を入力してバグを直して"],
@@ -23,13 +25,9 @@ class BugScene: BaseScene
     
     override func update(viewController:UIViewController?)
     {
-        
+		super.update(viewController: viewController)
         
         
     }
-    
-    override func stop(viewController:UIViewController?)
-    {
-        self.timer?.invalidate()
-    }
+
 }

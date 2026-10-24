@@ -18,6 +18,7 @@ class BaseScene: NSObject
 {
 	var scenario = [[String]]()
 	var currentMessageIdx = 0
+	var isEnding = false
 	
 	var timer:Timer?
 	
@@ -169,6 +170,12 @@ class BaseScene: NSObject
 			director.sendFlagToServer(flagIndex: 4)
 			
 			director.changeScene(scene: ShadowScene())
+		}
+		
+		if (director.gimmickFlags[5] && !director.isEnding)
+		{
+			director.isEnding = true
+			director.changeScene(scene: BugScene())
 		}
 	}
 	

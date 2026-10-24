@@ -35,7 +35,7 @@ class GameDirector: NSObject
 	var delegate:GameDirectorDelegate?
 	
 	// サーバIP
-	let ip = "172.16.50.150"
+	let ip = "172.16.0.112"
 	// サーバURL
 	var url:String!
 
@@ -54,6 +54,7 @@ class GameDirector: NSObject
 
 	// ギミッククリアフラグ
 	var gimmickFlags = [false, false, false, false, false, false, false, false, false]
+	var isEnding = false
 
 	let studentNamesByCardID = [
 		"D2 D5 F7 06": "nishima",   // 二島
@@ -110,6 +111,8 @@ class GameDirector: NSObject
 		// 時間切れ
 		if (self.remainGameTime < 0)
 		{
+			self.sendFlagToServer(flagIndex: 7)
+			
 			timer.invalidate()
 			
 			self.currentScene?.stop(viewController: self.currentViewController)
