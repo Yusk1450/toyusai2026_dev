@@ -54,7 +54,7 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
         {
             self.dismiss(animated: true, completion: nil)
         }else{
-            self.presentingViewController?.dismiss(animated: true) {
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true) {
                 let director = GameDirector.shared
                 director.currentScene?.startScenario()
             }
