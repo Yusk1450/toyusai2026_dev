@@ -472,6 +472,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="0nW-Nz-Bno"/>
                     <connections>
+                        <outlet property="backbtn" destination="MiM-QA-scX" id="Pqc-Xq-0Gb"/>
                         <outlet property="cardImage" destination="Evx-Qh-BCV" id="VH4-vp-Ej8"/>
                         <outlet property="noDataText" destination="g0w-Au-GaH" id="bbG-Sc-mXo"/>
                     </connections>

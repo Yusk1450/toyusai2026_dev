@@ -11,20 +11,25 @@ class StudentsCardViewController: BaseViewController
     @IBOutlet weak var cardImage: UIImageView!
     @IBOutlet weak var noDataText: UILabel!
     
+    @IBOutlet weak var backbtn: UIButton!
+    
     var studentName = ""
     private var resumeTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.backbtn.isHidden = false
         self.cardImage.image = UIImage(named: studentName)
 		if (self.studentName == "nishima")
         {
             self.noDataText.isHidden = false
+            self.backbtn.isHidden = true
         }
         else
         {
             self.noDataText.isHidden = true
+            self.backbtn.isHidden = false
         }
     }
 
@@ -66,6 +71,7 @@ class StudentsCardViewController: BaseViewController
         if (name == "nishima")
         {
             self.noDataText.isHidden = false
+            self.backbtn.isHidden = true
 
 			Timer.scheduledTimer(withTimeInterval: 8.0, repeats: false) { timer in
 
@@ -88,6 +94,7 @@ class StudentsCardViewController: BaseViewController
         else
         {
             self.noDataText.isHidden = true
+            self.backbtn.isHidden = false
         }
     }
     
