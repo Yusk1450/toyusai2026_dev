@@ -17,10 +17,7 @@ class LostPaperScene: BaseScene
             ["msg", "平崎", "見つけてくれてありがとうございます。いったい誰が移動したんだろう…"],
             ["msg", "伊志郷", "その論文は私が捨てました。もうその研究は中止されています。\nこの件については、これ以上調べる必要はありません。"],
         ]
-		
-		let director = GameDirector.shared
-		director.sendFlagToServer(flagIndex: 3)
-        
+		        
         self.startScenario()
         self.delegate?.gameSceneDidStart(scene: self)
     }
@@ -32,8 +29,9 @@ class LostPaperScene: BaseScene
         // セリフが最期まで言ったら…
         if (self.currentMessageIdx >= self.scenario.count)
         {
+			let director = GameDirector.shared
             // クリアフラグ
-            director.sendFlagToServer(flagIndex: 4)
+            director.sendFlagToServer(flagIndex: 3)
         }
         
         

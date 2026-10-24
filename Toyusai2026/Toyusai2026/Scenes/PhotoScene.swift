@@ -36,8 +36,9 @@ class PhotoScene: BaseScene
         // セリフが最期まで言ったら…
         if (self.currentMessageIdx >= self.scenario.count)
         {
+			let director = GameDirector.shared
             // クリアフラグ
-            director.sendFlagToServer(flagIndex: 2)
+            director.sendFlagToServer(flagIndex: 1)
         }
 		
 		

@@ -53,8 +53,8 @@ class GameDirector: NSObject
 	var currentScene:BaseScene?
 
 	// ギミッククリアフラグ
-	var gimmickFlags = [false, false, false, false, false, false, false, false, false]
-	var gimmickFlagsLast = [false, false, false, false, false, false, false, false, false]
+	var gimmickFlags = [false, false, false, false, false, false, false, false, false, false, false]
+	var gimmickFlagsLast = [false, false, false, false, false, false, false, false, false, false, false]
 	
 	let studentNamesByCardID = [
 		"d2d5f706": "nishima",   // 二島
@@ -250,7 +250,7 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					// 集合写真
 					// --------------------------------------------------
-					if (uuid == "0420feaa")
+					if (uuid == "8b11d306")
 					{
 						self.sendFlagToServer(flagIndex: 9)
 //						self.changeScene(scene: PhotoScene())
@@ -258,7 +258,7 @@ extension GameDirector: OSCUdpServerDelegate
 					// --------------------------------------------------
 					// VRゴーグル
 					// --------------------------------------------------
-					else if (uuid == "041effaa")
+					else if (uuid == "2b50d206")
 					{
 						self.sendFlagToServer(flagIndex: 10)
 //						self.changeScene(scene: VRScene())
