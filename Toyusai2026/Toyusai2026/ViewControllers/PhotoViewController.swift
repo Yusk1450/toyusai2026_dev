@@ -144,12 +144,16 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
         self.waitNishimaTimer?.invalidate()
         self.waitNishimaTimer = nil
         guard let player = self.player else { return }
+        
         let framIndex = Int(player.currentTime().seconds * 60)
         if (framIndex > 236 && framIndex < 253)
         {
-            let director = GameDirector.shared
-            director.currentViewController = self.presentingViewController
-            dismiss(animated: false, completion: nil)
+            
+            self.presentingViewController?.presentingViewController?.dismiss(animated: false)
+            {
+                let director = GameDirector.shared
+                director.currentScene?.startScenario()
+            }
         }
     }
     // MARK: - ARSCNViewDelegate
