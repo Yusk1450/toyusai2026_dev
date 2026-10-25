@@ -63,7 +63,8 @@ class ChatViewController: MessagesViewController, GameDirectorDelegate
     override func viewDidAppear(_ animated: Bool)
 	{
         super.viewDidAppear(animated)
-		
+        
+		if (self.presentedViewController != nil) { return }
 		let director = GameDirector.shared
 		director.currentViewController = self
     }
