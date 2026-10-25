@@ -16,7 +16,7 @@ class ProgramViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     
 	// サーバIP
-	let ip = "172.16.0.112"
+	let ip = "192.168.13.200"
 	// サーバURL
 	var url:String!
 	
@@ -38,7 +38,7 @@ class ProgramViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-		self.url = "http://\(self.ip):8888/WORKS/NBU/toyusai2026_dev/server"
+		self.url = "http://\(self.ip):8888/server"
 		
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false

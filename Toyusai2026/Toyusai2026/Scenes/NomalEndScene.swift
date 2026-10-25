@@ -13,6 +13,10 @@ class NomalEndScene: BaseScene
     {
 		super.start(viewController: viewController)
 
+		let director = GameDirector.shared
+		director.gameTimer?.invalidate()
+		director.gameTimer = nil
+
 		self.scenario = [
             ["img", "伊志郷", "screenshot"],
             ["msg", "伊志郷", "このバグを直したのは誰ですか！！"],
