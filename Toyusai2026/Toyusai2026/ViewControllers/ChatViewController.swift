@@ -83,14 +83,15 @@ class ChatViewController: MessagesViewController, GameDirectorDelegate
 		layout.setMessageIncomingAvatarSize(avatarSize)
 		layout.setMessageOutgoingAvatarSize(avatarSize)
 
-		let textInsets = UIEdgeInsets.zero
+		// let textInsets = UIEdgeInsets.zero
+		let textInsets = UIEdgeInsets(top: 8, left: 14, bottom: 8, right: 14)
 		layout.textMessageSizeCalculator.incomingMessageLabelInsets = textInsets
 		layout.textMessageSizeCalculator.outgoingMessageLabelInsets = textInsets
 		layout.attributedTextMessageSizeCalculator.incomingMessageLabelInsets = textInsets
 		layout.attributedTextMessageSizeCalculator.outgoingMessageLabelInsets = textInsets
 
-		let incomingInset = avatarSide + layout.textMessageSizeCalculator.incomingMessagePadding.left
-		let outgoingInset = avatarSide + layout.textMessageSizeCalculator.outgoingMessagePadding.right
+		let incomingInset = avatarSide + layout.textMessageSizeCalculator.incomingMessagePadding.left + textInsets.left
+		let outgoingInset = avatarSide + layout.textMessageSizeCalculator.outgoingMessagePadding.right + textInsets.right
 		layout.setMessageIncomingMessageTopLabelAlignment(
 			LabelAlignment(textAlignment: .left, textInsets: UIEdgeInsets(top: 0, left: incomingInset, bottom: 0, right: 0))
 		)
@@ -112,9 +113,12 @@ class ChatViewController: MessagesViewController, GameDirectorDelegate
 	
 	func createMessage(text: String, sender:SenderType) -> MockMessage
     {
+        let spacing = NSMutableParagraphStyle()
+        spacing.lineSpacing = 10
         let attributedText = NSAttributedString(string: text, attributes: [
-			.font: UIFont(name: "ShipporiMincho-SemiBold", size: 16),
-			.foregroundColor: UIColor.white
+			.font: UIFont(name: "ShipporiMincho-SemiBold", size: 20),
+			.foregroundColor: UIColor.white,
+			.paragraphStyle: spacing
 		])
         return MockMessage(attributedText: attributedText,
 						   sender: sender,
@@ -217,7 +221,7 @@ extension ChatViewController: MessagesDataSource
         let name = message.sender.displayName
         return NSAttributedString(string: name, attributes:
                                     [.font: UIFont(
-                                        name: "ShipporiMincho-SemiBold", size: 16),
+                                        name: "ShipporiMincho-SemiBold", size: 20),
                                      .foregroundColor: UIColor.white])
     }
     
@@ -239,7 +243,7 @@ extension ChatViewController: MessagesDisplayDelegate
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView)
     {
-        
+        avatarView.isHidden = false
         let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout
         layout?.setMessageOutgoingAvatarSize(CGSize(width: 36, height: 36))
         layout?.setMessageIncomingAvatarSize(CGSize(width: 36, height: 36))
@@ -272,12 +276,12 @@ extension ChatViewController: MessagesLayoutDelegate
     
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat
     {
-        return 16
+        return 20
     }
     
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat
     {
-        return 16
+        return 20
     }
     
 }
