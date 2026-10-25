@@ -13,7 +13,6 @@ import AVFoundation
 class PhotoViewController: BaseViewController,ARSCNViewDelegate
 {
 
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var sceneView: ARSCNView!
     @IBOutlet weak var backBtn: UIButton!
 
@@ -146,7 +145,7 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
         guard let player = self.player else { return }
         
         let framIndex = Int(player.currentTime().seconds * 60)
-        if (framIndex > 236 && framIndex < 253)
+        if (framIndex >= 236 && framIndex <= 253)
         {
             
             self.presentingViewController?.presentingViewController?.dismiss(animated: false)

@@ -29,7 +29,7 @@ private struct MockMediaItem: MediaItem {
     
     init(image: UIImage) {
         self.image = image
-        self.size = CGSize(width: image.size.width * 0.15, height: image.size.height * 0.15)
+        self.size = CGSize(width: image.size.width * 0.2, height: image.size.height * 0.2)
         self.placeholderImage = UIImage()
     }
 }

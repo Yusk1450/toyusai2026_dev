@@ -16,6 +16,7 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
     @IBOutlet weak var sceneView: ARSCNView!
     
     var isAR = false
+    var isFlug = false
 
 	override func viewDidLoad()
 	{
@@ -23,6 +24,9 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
 		
 		sceneView.delegate = self
         self.isAR = false
+        
+        let director = GameDirector.shared
+        self.isFlug = director.gimmickFlags[3]
 	}
         
 	override func viewWillAppear(_ animated: Bool) {
@@ -50,16 +54,18 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
     
     @IBAction func backBtn(_ sender: Any)
     {
-        if (!isAR)
+        if (!isAR || isFlug)
         {
             self.dismiss(animated: true, completion: nil)
-        }else{
+        }
+        else if (isAR)
+        {
             self.presentingViewController?.presentingViewController?.dismiss(animated: true)
 			{
 					let director = GameDirector.shared
 					director.sendFlagToServer(flagIndex: 3)
-				}
-			}
+            }
+        }
     }
         
 	// MARK: - ARSCNViewDelegate
