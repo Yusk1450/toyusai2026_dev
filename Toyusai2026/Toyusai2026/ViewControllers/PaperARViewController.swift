@@ -64,6 +64,7 @@ class PaperARViewController: BaseViewController,ARSCNViewDelegate
 			{
 					let director = GameDirector.shared
 					director.sendFlagToServer(flagIndex: 3)
+                
             }
         }
     }

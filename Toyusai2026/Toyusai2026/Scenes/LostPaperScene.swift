@@ -14,6 +14,7 @@ class LostPaperScene: BaseScene
 		super.start(viewController: viewController)
 		
         self.scenario = [
+            ["msg", "山井", "うん。「二島彩子」さんもちゃんといるね"],
             ["msg", "平崎", "見つけてくれてありがとうございます。いったい誰が移動したんだろう…"],
             ["msg", "伊志郷", "その論文は私が捨てました。もうその研究は中止されています。\nこの件については、これ以上調べる必要はありません。"],
         ]

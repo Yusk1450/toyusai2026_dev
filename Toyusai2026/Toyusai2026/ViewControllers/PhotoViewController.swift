@@ -114,23 +114,26 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
                 }
 
                 player.seek(to: step, toleranceBefore: .zero, toleranceAfter: .zero){ _ in
-                    let framIndex = Int(currentTime.seconds * Double(fps))
-                    if (framIndex > 236 && framIndex < 253)
-                    {
-                        if (self.waitNishimaTimer == nil)
+                    DispatchQueue.main.async {
+                        guard player.currentTime().isNumeric else { return }
+                        let framIndex = Int(player.currentTime().seconds * Double(fps))
+                        if (framIndex > 236 && framIndex < 253)
                         {
-                            self.waitNishimaTimer = Timer.scheduledTimer(timeInterval: 5.0,
-                                target: self,
-                                selector: #selector(self.nextChat),
-                                userInfo: nil,
-                                repeats: false)
-                        }
+                            if (self.waitNishimaTimer == nil)
+                            {
+                                self.waitNishimaTimer = Timer.scheduledTimer(timeInterval: 2.0,
+                                    target: self,
+                                    selector: #selector(self.nextChat),
+                                    userInfo: nil,
+                                    repeats: false)
+                            }
 
-                    }
-                    else
-                    {
-                        self.waitNishimaTimer?.invalidate()
-                        self.waitNishimaTimer = nil
+                        }
+                        else
+                        {
+                            self.waitNishimaTimer?.invalidate()
+                            self.waitNishimaTimer = nil
+                        }
                     }
                 }
             }
@@ -168,6 +171,11 @@ class PhotoViewController: BaseViewController,ARSCNViewDelegate
         guard let url = Bundle.main.url(forResource: "photoAR", withExtension: "mp4") else {return}
         self.player = AVPlayer(url: url)
         self.player?.pause()
+        self.player?.seek(to: .zero)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.player?.pause()
+            self.player?.seek(to: .zero)
+        }
         let videoNode = SKVideoNode(avPlayer: self.player!)
         videoNode.play()
         self.player?.pause()

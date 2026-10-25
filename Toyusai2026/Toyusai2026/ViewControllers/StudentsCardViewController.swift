@@ -54,6 +54,7 @@ class StudentsCardViewController: BaseViewController
 				self.dismiss(animated: false) {
 					if let currentScene = director.currentScene as? StudentCardScene
 					{
+                        director.sendFlagToServer(flagIndex: 0)
 						currentScene.startScenario()
 					}
 				}
@@ -85,6 +86,7 @@ class StudentsCardViewController: BaseViewController
 				self.dismiss(animated: false) {
 					if let currentScene = director.currentScene as? StudentCardScene
 					{
+                        director.sendFlagToServer(flagIndex: 0)
 						currentScene.startScenario()
 					}
 				}
